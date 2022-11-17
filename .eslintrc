@@ -12,6 +12,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "no-use-before-define": ["error", {"functions": false, "classes": false, "variables": false}],
     "react/no-unescaped-entities": "warn",
     "import/order": ["error", {
       "groups": ["builtin", "external", ["internal", "parent", "sibling"], "index", "object", "type"]
