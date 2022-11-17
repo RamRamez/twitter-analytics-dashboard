@@ -1,12 +1,27 @@
 {
+  "plugins": [
+    "import",
+    "unused-imports"
+  ],
   "extends": [
     "airbnb",
     "plugin:prettier/recommended",
     "prettier",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:react/jsx-runtime"
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "react/no-unescaped-entities": "warn",
+    "import/order": ["error", {
+      "groups": ["builtin", "external", ["internal", "parent", "sibling"], "index", "object", "type"]
+    }],
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
+    "import/named": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -46,15 +61,17 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "trailingComma": "all",
-        "printWidth": 100,
-        "endOfLine": "auto"
-      }
-    ],
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "useTabs": true,
+      "tabWidth": 4,
+      "semi": true,
+      "jsxSingleQuote": true,
+      "trailingComma": "all",
+      "arrowParens": "avoid",
+      "endOfLine": "auto",
+      "printWidth": 100
+    }],
     "react-app/jsx-a11y/href-no-hash": "off", // This rule is dropped but create-react-app uses old rules
     "jsx-a11y/label-has-for": "off", // This rule will be dropped soon anyway
     "react/destructuring-assignment": "off", // Seems to be way too restrictive
