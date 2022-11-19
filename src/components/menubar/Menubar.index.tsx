@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import zIndex from '@mui/material/styles/zIndex';
 import MenuItem from './MenuItem';
 import menuItems from './menuItems';
-import TwitterIcon from '../../../assets/images/twitter.png';
+import TwitterIcon from '../../assets/images/twitter.png';
 
 function MenubarIndex() {
 	const [open, setOpen] = useState(false);
