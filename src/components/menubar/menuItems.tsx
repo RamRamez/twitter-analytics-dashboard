@@ -10,12 +10,13 @@ import {
 	SystemUpdateAlt,
 	Topic,
 } from '@mui/icons-material';
+import routes from '../../application/routes';
 
 const menuItems = [
 	{
 		label: 'General Stats',
 		icon: <Equalizer />,
-		link: '/',
+		link: routes.general,
 	},
 	{
 		label: 'Entity Profile',
@@ -25,42 +26,42 @@ const menuItems = [
 	{
 		label: 'Advanced Filters',
 		icon: <FilterAlt />,
-		link: '/filter',
+		link: routes.filters,
 	},
 	{
 		label: 'Words Analysis',
 		icon: <Spellcheck />,
-		link: '/words',
+		link: routes.words,
 	},
 	{
 		label: 'Topics Analysis',
 		icon: <Topic />,
-		link: '/topic',
+		link: routes.topics,
 	},
 	{
 		label: 'Entities Analysis',
 		icon: <Business />,
-		link: '/entities',
+		link: routes.entities,
 	},
 	{
 		label: 'Add Entity',
 		icon: <Add />,
-		link: '/add',
+		link: routes.add,
 	},
 	{
 		label: 'Update Entity',
 		icon: <SystemUpdateAlt />,
-		link: '/update',
+		link: routes.update,
 	},
 	{
 		label: 'Search Twitter',
 		icon: <Search />,
-		link: '/search',
+		link: routes.search,
 	},
 	{
 		label: 'View Operations',
 		icon: <RemoveRedEye />,
-		link: '/operations',
+		link: routes.operations,
 	},
 ];
 

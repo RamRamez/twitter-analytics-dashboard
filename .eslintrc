@@ -12,6 +12,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "react/require-default-props": "off",
     "no-use-before-define": ["error", {"functions": false, "classes": false, "variables": false}],
     "react/no-unescaped-entities": "warn",
     "import/order": ["error", {
@@ -71,7 +72,7 @@
       "trailingComma": "all",
       "arrowParens": "avoid",
       "endOfLine": "auto",
-      "printWidth": 100
+      "printWidth": 90
     }],
     "react-app/jsx-a11y/href-no-hash": "off", // This rule is dropped but create-react-app uses old rules
     "jsx-a11y/label-has-for": "off", // This rule will be dropped soon anyway
@@ -90,6 +91,7 @@
   },
   "settings": {
     "import/resolver": {
+      "typescript": {},
       "node": {
         "moduleDirectory": ["node_modules", "src/"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]

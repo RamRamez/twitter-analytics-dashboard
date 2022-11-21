@@ -4,19 +4,27 @@ import StatCard from '../../StatCard';
 import TwitterIcon from '../../../assets/images/twitter-stat-card.png';
 import PeopleIcon from '../../../assets/images/people-team.svg';
 import HashtagIcon from '../../../assets/images/hashtag.png';
-import GeoIcon from '../../../assets/images/geo.png';
+import { IGeneralStats } from './General.index';
 
-function GeneralStats() {
+interface IProps {
+	generalStats?: IGeneralStats;
+}
+
+function GeneralStats(props: IProps) {
+	const { tweetCount, uniqueUsers, uniqueHashtags } = props.generalStats || {};
 	return (
 		<Wrapper>
 			<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 				General Statistics
 			</Typography>
 			<GeneralCards>
-				<StatCard title='Tweets' value={22764} icon={TwitterIcon} />
-				<StatCard title='Unique Entities' value={3} icon={PeopleIcon} />
-				<StatCard title='Total Hashtags' value={50} icon={HashtagIcon} />
-				<StatCard title='Tweets with Geo' value={2764} icon={GeoIcon} />
+				<StatCard title='Tweets' value={tweetCount} icon={TwitterIcon} />
+				<StatCard title='Unique Accounts' value={uniqueUsers} icon={PeopleIcon} />
+				<StatCard
+					title='Unique Hashtags'
+					value={uniqueHashtags}
+					icon={HashtagIcon}
+				/>
 			</GeneralCards>
 		</Wrapper>
 	);

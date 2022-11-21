@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 interface IStatCardProps {
 	title: string;
-	value: number;
+	value?: number;
 	icon: string;
 }
 
@@ -18,7 +18,11 @@ function StatCard(props: IStatCardProps) {
 				<Typography gutterBottom variant='h6' component='div'>
 					{title}
 				</Typography>
-				<Typography sx={{ fontWeight: 'bold' }} variant='h5' color='text.secondary'>
+				<Typography
+					sx={{ fontWeight: 'bold' }}
+					variant='h5'
+					color='text.secondary'
+				>
 					{value}
 				</Typography>
 			</CardContent>

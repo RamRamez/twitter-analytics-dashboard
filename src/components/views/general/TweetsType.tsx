@@ -4,7 +4,10 @@ import styled from '@emotion/styled';
 function TweetsType() {
 	return (
 		<Wrapper>
-			<Typography sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }} variant='h5'>
+			<Typography
+				sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
+				variant='h5'
+			>
 				Tweets Type
 			</Typography>
 		</Wrapper>

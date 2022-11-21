@@ -1,10 +1,20 @@
-import { Box, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+	Box,
+	FormControl,
+	InputLabel,
+	MenuItem,
+	Select,
+	Typography,
+} from '@mui/material';
 import styled from '@emotion/styled';
 
 function SocialNetwork() {
 	return (
 		<Wrapper>
-			<Typography sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }} variant='h5'>
+			<Typography
+				sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
+				variant='h5'
+			>
 				Social Network Analysis
 			</Typography>
 			<Box sx={{ width: 220, mx: 'auto' }}>
