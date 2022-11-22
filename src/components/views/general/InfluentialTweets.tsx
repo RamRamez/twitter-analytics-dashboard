@@ -8,26 +8,43 @@ import {
 } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { apiDashboardMostInfluentialTweets } from '../../../api/apiRequests';
+import { fetchInfluentialTweets } from '../../../api/apiRequests';
 import { EPublicMetrics } from '../../../types/publicMetrics';
 import { ITweet } from '../../../types/tweet';
 import { ETimeRange } from '../../../types/timeRange';
 import TweetsSwiper from '../../TweetsSwiper';
+import { IMedia } from '../../../types/media';
 
 interface IInfluentialTweetsProps {
 	timeRange: ETimeRange;
 }
 
+export type TTweetsWithMedia = (ITweet & { media?: IMedia[] })[];
+
 function InfluentialTweets(props: IInfluentialTweetsProps) {
 	const { timeRange } = props;
-	const [influentialTweets, setInfluentialTweets] = useState<ITweet[]>();
+	const [influentialTweets, setInfluentialTweets] = useState<TTweetsWithMedia>();
 	const [sortBy, setSortBy] = useState<EPublicMetrics>(EPublicMetrics.retweet_count);
-	console.log(influentialTweets);
 
 	useEffect(() => {
-		apiDashboardMostInfluentialTweets({ sortBy, timeRange }).then(
-			setInfluentialTweets,
-		);
+		fetchInfluentialTweets({ sortBy, timeRange }).then(res => {
+			const _influentialTweets: TTweetsWithMedia = res.influentialTweets;
+			_influentialTweets.map(tweet => {
+				const mediaKeys = tweet.attachments?.media_keys;
+				if (mediaKeys) {
+					const _media: IMedia[] = [];
+					mediaKeys.forEach(key => {
+						const foundMedia = res.media.find(m => m.media_key === key);
+						if (foundMedia) _media.push(foundMedia);
+					});
+					if (_media.length > 0) {
+						tweet.media = _media;
+					}
+				}
+				return tweet;
+			});
+			setInfluentialTweets(_influentialTweets);
+		});
 	}, [sortBy, timeRange]);
 
 	return (

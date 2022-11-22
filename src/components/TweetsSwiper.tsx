@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import styled from '@emotion/styled';
-import { ITweet } from '../types/tweet';
 import TweetCard from './TweetCard';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { FlexCenter } from './styled-components/flex';
+import { TTweetsWithMedia } from './views/general/InfluentialTweets';
 
 interface IProps {
-	tweets?: ITweet[];
+	tweets?: TTweetsWithMedia;
 }
 
 export default function TweetsSwiper(props: IProps) {

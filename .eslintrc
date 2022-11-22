@@ -12,6 +12,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
+    "no-shadow": "off",
     "react/require-default-props": "off",
     "no-use-before-define": ["error", {"functions": false, "classes": false, "variables": false}],
     "react/no-unescaped-entities": "warn",

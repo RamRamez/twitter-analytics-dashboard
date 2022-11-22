@@ -75,9 +75,16 @@ interface ITweetReferencedTweet {
 	id: string;
 }
 
+interface ITweetAuthor {
+	id: string;
+	name: string;
+	username: string;
+	profile_image_url: string;
+}
+
 export interface ITweet {
 	attachments?: ITweetAttachments;
-	author_id: string;
+	author: ITweetAuthor;
 	context_annotations: ITweetContextAnnotation[];
 	conversation_id: string;
 	created_at: string;

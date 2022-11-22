@@ -22,3 +22,7 @@ export const formatDate = (date: string) => {
 export const formatTweetLink = (tweetId: string) => {
 	return `https://twitter.com/i/web/status/${tweetId}`;
 };
+
+export const formatAuthorLink = (authorId: string) => {
+	return `https://twitter.com/${authorId}`;
+};
