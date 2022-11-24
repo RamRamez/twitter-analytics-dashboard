@@ -3,12 +3,13 @@ import { Container, Divider } from '@mui/material';
 import InfluentialTweets from './InfluentialTweets';
 import GeneralStats from './GeneralStats';
 import SocialNetwork from './SocialNetwork';
-import TweetsType from './TweetsType';
+import TweetsTypes from './TweetsTypes';
 import TweetsLanguage from './TweetsLanguage';
 import TweetsTime from './TweetsTime';
 import HashtagsAbundance from './HashtagsAbundance';
 import { apiDashboardGeneral } from '../../../api/apiRequests';
 import { ETimeRange } from '../../../types/timeRange';
+import TimeRangeMenu from '../../TimeRangeMenu';
 
 export interface hashtagAbundance {
 	tag: string;
@@ -33,6 +34,7 @@ function GeneralIndex() {
 
 	return (
 		<Container sx={{ my: 15 }}>
+			<TimeRangeMenu timeRange={timeRange} setTimeRange={setTimeRange} />
 			<GeneralStats generalStats={generalStats} />
 			<Divider />
 			<HashtagsAbundance tags={generalStats?.hashtagsAbundance} />
@@ -41,9 +43,9 @@ function GeneralIndex() {
 			<Divider />
 			<SocialNetwork timeRange={timeRange} />
 			<Divider />
-			<TweetsType />
+			<TweetsTypes timeRange={timeRange} />
 			<Divider />
-			<TweetsLanguage />
+			<TweetsLanguage timeRange={timeRange} />
 			<Divider />
 			<TweetsTime />
 		</Container>

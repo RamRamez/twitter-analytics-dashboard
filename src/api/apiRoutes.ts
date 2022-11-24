@@ -17,4 +17,6 @@ export const apiDashboardRoutes = {
 	general: apiRoutes.dashboard,
 	mostInfluentialTweets: `${apiRoutes.dashboard}/mostInfluentialTweets`,
 	socialNetwork: `${apiRoutes.dashboard}/socialNetwork`,
+	tweetsTypes: `${apiRoutes.dashboard}/tweetsTypes`,
+	tweetsLanguages: `${apiRoutes.dashboard}/tweetsLanguages`,
 };

@@ -1,7 +1,11 @@
 import { apiDashboardRoutes, apiRoutes } from './apiRoutes';
 import { getRequest, postRequest } from '../lib/requests';
-import { TInfluentialTweets } from '../types/api/influentialTweets';
-import { TSocialNetwork } from '../types/api/socialNetwork';
+import {
+	IInfluentialTweets,
+	ISocialNetwork,
+	ITweetsLanguages,
+	ITweetsType,
+} from '../types/api';
 
 interface IApiSignIn {
 	username: string;
@@ -24,10 +28,18 @@ export function apiDashboardGeneral(query?: {}) {
 	return getRequest(apiDashboardRoutes.general, query);
 }
 
-export function fetchInfluentialTweets(query?: {}): TInfluentialTweets {
+export function fetchInfluentialTweets(query?: {}): Promise<IInfluentialTweets> {
 	return getRequest(apiDashboardRoutes.mostInfluentialTweets, query);
 }
 
-export function fetchSocialNetwork(query?: {}): TSocialNetwork {
+export function fetchSocialNetwork(query?: {}): Promise<ISocialNetwork[]> {
 	return getRequest(apiDashboardRoutes.socialNetwork, query);
+}
+
+export function fetchTweetsTypes(query?: {}): Promise<ITweetsType[]> {
+	return getRequest(apiDashboardRoutes.tweetsTypes, query);
+}
+
+export function fetchTweetsLanguages(query?: {}): Promise<ITweetsLanguages[]> {
+	return getRequest(apiDashboardRoutes.tweetsLanguages, query);
 }

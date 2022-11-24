@@ -13,7 +13,7 @@ import { Help } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { FlexCenter } from '../../styled-components/flex';
 import { fetchSocialNetwork } from '../../../api/apiRequests';
-import { ISocialNetwork } from '../../../types/api/socialNetwork';
+import { ISocialNetwork } from '../../../types/api';
 import { EReferencedTweetsType } from '../../../types/referencedTweetsType';
 import { ITimeRangeProps } from '../../../types/timeRange';
 
