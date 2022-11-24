@@ -16,4 +16,5 @@ export const apiAdminRoutes = {
 export const apiDashboardRoutes = {
 	general: apiRoutes.dashboard,
 	mostInfluentialTweets: `${apiRoutes.dashboard}/mostInfluentialTweets`,
+	socialNetwork: `${apiRoutes.dashboard}/socialNetwork`,
 };

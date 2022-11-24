@@ -1,27 +1,27 @@
 import {
 	Box,
 	FormControl,
+	IconButton,
 	InputLabel,
 	MenuItem,
 	Select,
+	Tooltip,
 	Typography,
 } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+import { Help } from '@mui/icons-material';
 import { fetchInfluentialTweets } from '../../../api/apiRequests';
 import { EPublicMetrics } from '../../../types/publicMetrics';
 import { ITweet } from '../../../types/tweet';
-import { ETimeRange } from '../../../types/timeRange';
+import { ITimeRangeProps } from '../../../types/timeRange';
 import TweetsSwiper from '../../TweetsSwiper';
 import { IMedia } from '../../../types/media';
-
-interface IInfluentialTweetsProps {
-	timeRange: ETimeRange;
-}
+import { FlexCenter } from '../../styled-components/flex';
 
 export type TTweetsWithMedia = (ITweet & { media?: IMedia[] })[];
 
-function InfluentialTweets(props: IInfluentialTweetsProps) {
+function InfluentialTweets(props: ITimeRangeProps) {
 	const { timeRange } = props;
 	const [influentialTweets, setInfluentialTweets] = useState<TTweetsWithMedia>();
 	const [sortBy, setSortBy] = useState<EPublicMetrics>(EPublicMetrics.retweet_count);
@@ -49,13 +49,20 @@ function InfluentialTweets(props: IInfluentialTweetsProps) {
 
 	return (
 		<Wrapper>
-			<Typography
-				sx={{ fontWeight: 'bold', textAlign: 'center', mb: 5 }}
-				variant='h5'
-			>
-				Most Influential Tweets
-			</Typography>
-			<Box sx={{ width: 220, mx: 'auto' }}>
+			<FlexCenter>
+				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
+					Most Influential Tweets
+				</Typography>
+				<Tooltip
+					placement='top'
+					title='Most influential tweets in the DB excluding retweets. Influential tweets are tweets with the most retweets, replies, likes, and quotes.'
+				>
+					<IconButton>
+						<Help />
+					</IconButton>
+				</Tooltip>
+			</FlexCenter>
+			<Box sx={{ width: 220, mx: 'auto', mt: 5 }}>
 				<FormControl fullWidth>
 					<InputLabel>Sort By</InputLabel>
 					<Select

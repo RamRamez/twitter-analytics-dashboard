@@ -1,6 +1,7 @@
 import { apiDashboardRoutes, apiRoutes } from './apiRoutes';
 import { getRequest, postRequest } from '../lib/requests';
 import { TInfluentialTweets } from '../types/api/influentialTweets';
+import { TSocialNetwork } from '../types/api/socialNetwork';
 
 interface IApiSignIn {
 	username: string;
@@ -25,4 +26,8 @@ export function apiDashboardGeneral(query?: {}) {
 
 export function fetchInfluentialTweets(query?: {}): TInfluentialTweets {
 	return getRequest(apiDashboardRoutes.mostInfluentialTweets, query);
+}
+
+export function fetchSocialNetwork(query?: {}): TSocialNetwork {
+	return getRequest(apiDashboardRoutes.socialNetwork, query);
 }

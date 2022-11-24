@@ -39,7 +39,7 @@ function GeneralIndex() {
 			<Divider />
 			<InfluentialTweets timeRange={timeRange} />
 			<Divider />
-			<SocialNetwork />
+			<SocialNetwork timeRange={timeRange} />
 			<Divider />
 			<TweetsType />
 			<Divider />

@@ -1,5 +1,6 @@
 import { colors, Typography } from '@mui/material';
 import styled from '@emotion/styled';
+import { PlayCircleOutline, Visibility } from '@mui/icons-material';
 import { ITweet } from '../types/tweet';
 import { formatAuthorLink, formatDate, formatTweetLink } from '../lib/helpers';
 import RetweetIcon from '../assets/images/retweet.svg';
@@ -82,22 +83,78 @@ export default function TweetCard(props: IProps) {
 			</Typography>
 			{tweet.media && (
 				<MediaContainer>
-					{tweet.media.map(media => (
-						<ImageContainer key={media.media_key}>
-							<img
-								key={media.media_key}
-								src={media.url}
-								alt='media'
-								width='100%'
-								height='100%'
-							/>
-						</ImageContainer>
-					))}
+					{tweet.media.map(media => {
+						return media.type === 'video' ? (
+							<VideoContainer key={media.media_key}>
+								<img
+									src={media.preview_image_url}
+									alt='media'
+									width='100%'
+									height='100%'
+								/>
+								<PlayIcon
+									target='_blank'
+									rel='noopener noreferrer'
+									href={formatTweetLink(tweet.id)}
+								>
+									<PlayCircleOutline fontSize='inherit' />
+								</PlayIcon>
+								<ViewCount variant='subtitle2'>
+									<Visibility />
+									{media.public_metrics?.view_count}
+								</ViewCount>
+							</VideoContainer>
+						) : (
+							<ImageContainer key={media.media_key}>
+								<img
+									src={media.url}
+									alt='media'
+									width='100%'
+									height='100%'
+								/>
+							</ImageContainer>
+						);
+					})}
 				</MediaContainer>
 			)}
 		</CardContainer>
 	);
 }
+
+const PlayIcon = styled.a`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	background: black;
+	display: flex;
+	align-items: center;
+	border-radius: 50%;
+	font-size: 70px;
+	opacity: 0.6;
+`;
+
+const ViewCount = styled(Typography)`
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	background: white;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	border-radius: 25px;
+	padding: 5px;
+	opacity: 0.6;
+`;
+
+const VideoContainer = styled.div`
+	max-width: 400px;
+	max-height: 400px;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+`;
 
 const ImageContainer = styled.div`
 	max-width: 400px;

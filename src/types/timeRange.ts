@@ -6,3 +6,7 @@ export enum ETimeRange {
 	year = 'year',
 	all = 'all',
 }
+
+export interface ITimeRangeProps {
+	timeRange: ETimeRange;
+}
