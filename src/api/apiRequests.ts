@@ -3,7 +3,10 @@ import { getRequest, postRequest } from '../lib/requests';
 import {
 	IInfluentialTweets,
 	ISocialNetwork,
+	ITweetsHourly,
 	ITweetsLanguages,
+	ITweetsMonthly,
+	ITweetsSource,
 	ITweetsType,
 } from '../types/api';
 
@@ -42,4 +45,16 @@ export function fetchTweetsTypes(query?: {}): Promise<ITweetsType[]> {
 
 export function fetchTweetsLanguages(query?: {}): Promise<ITweetsLanguages[]> {
 	return getRequest(apiDashboardRoutes.tweetsLanguages, query);
+}
+
+export function fetchTweetsMonthly(query?: {}): Promise<ITweetsMonthly[]> {
+	return getRequest(apiDashboardRoutes.tweetsMonthly, query);
+}
+
+export function fetchTweetsHourly(query?: {}): Promise<ITweetsHourly[]> {
+	return getRequest(apiDashboardRoutes.tweetsHourly, query);
+}
+
+export function fetchTweetsSource(query?: {}): Promise<ITweetsSource[]> {
+	return getRequest(apiDashboardRoutes.tweetsSource, query);
 }

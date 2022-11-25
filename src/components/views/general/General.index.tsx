@@ -5,11 +5,13 @@ import GeneralStats from './GeneralStats';
 import SocialNetwork from './SocialNetwork';
 import TweetsTypes from './TweetsTypes';
 import TweetsLanguage from './TweetsLanguage';
-import TweetsTime from './TweetsTime';
+import TweetsMonthly from './TweetsMonthly';
 import HashtagsAbundance from './HashtagsAbundance';
 import { apiDashboardGeneral } from '../../../api/apiRequests';
 import { ETimeRange } from '../../../types/timeRange';
 import TimeRangeMenu from '../../TimeRangeMenu';
+import TweetsHourly from './TweetsHourly';
+import TweetsSource from './TweetsSource';
 
 export interface hashtagAbundance {
 	tag: string;
@@ -47,7 +49,11 @@ function GeneralIndex() {
 			<Divider />
 			<TweetsLanguage timeRange={timeRange} />
 			<Divider />
-			<TweetsTime />
+			<TweetsSource timeRange={timeRange} />
+			<Divider />
+			<TweetsMonthly timeRange={timeRange} />
+			<Divider />
+			<TweetsHourly timeRange={timeRange} />
 		</Container>
 	);
 }

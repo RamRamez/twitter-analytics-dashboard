@@ -21,3 +21,18 @@ export interface ITweetsLanguages {
 	count: number;
 	lang: string;
 }
+
+export interface ITweetsMonthly {
+	count: number;
+	date: string;
+}
+
+export interface ITweetsHourly {
+	count: number;
+	hour: number;
+}
+
+export interface ITweetsSource {
+	count: number;
+	source: string;
+}

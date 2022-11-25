@@ -32,10 +32,7 @@ function SocialNetwork(props: ITimeRangeProps) {
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 					Social Network Analysis
 				</Typography>
-				<Tooltip
-					placement='top'
-					title='Most influential tweets in the DB excluding retweets'
-				>
+				<Tooltip placement='top' title={tooltipCopy}>
 					<IconButton>
 						<Help />
 					</IconButton>
@@ -76,6 +73,9 @@ function SocialNetwork(props: ITimeRangeProps) {
 		</Wrapper>
 	);
 }
+
+const tooltipCopy =
+	'Social Network Analysis shows which twitter users has influenced DB users the most. It has three types: retweeted, quoted and replied to. e.g. type retweeted means that the user/DB users has retweeted whose tweets the most.';
 
 const TagsContainer = styled.div`
 	display: flex;
