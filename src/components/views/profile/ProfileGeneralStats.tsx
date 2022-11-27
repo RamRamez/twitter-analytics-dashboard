@@ -1,17 +1,23 @@
 import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FlexCenter } from '../../styled-components/flex';
 import StatCard from '../../StatCard';
 import TwitterIcon from '../../../assets/images/twitter-stat-card.png';
 import HashtagIcon from '../../../assets/images/hashtag.png';
 import TooltipHelp from '../../TooltipHelp';
 import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
+import { fetchUser } from '../../../api/apiRequests';
+import { IUser } from '../../../types/user';
 
 export default function ProfileGeneralStats(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;
+	const [userData, setUserData] = useState<IUser>();
+	console.log(userData);
 
-	useEffect(() => {}, [timeRange, user]);
+	useEffect(() => {
+		fetchUser(user!).then(setUserData);
+	}, [timeRange, user]);
 
 	return (
 		<Wrapper>

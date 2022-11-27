@@ -4,14 +4,14 @@ import { ETimeRange } from '../../../types/timeAndUserProps';
 import TimeRangeMenu from '../../TimeRangeMenu';
 import ProfileGeneralStats from './ProfileGeneralStats';
 import ProfileSelect from './ProfileSelect';
-import HashtagsAbundance from '../general/HashtagsAbundance';
-import InfluentialTweets from '../general/InfluentialTweets';
-import SocialNetwork from '../general/SocialNetwork';
-import TweetsTypes from '../general/TweetsTypes';
-import TweetsLanguage from '../general/TweetsLanguage';
-import TweetsSource from '../general/TweetsSource';
-import TweetsMonthly from '../general/TweetsMonthly';
-import TweetsHourly from '../general/TweetsHourly';
+import HashtagsAbundance from '../HashtagsAbundance';
+import InfluentialTweets from '../InfluentialTweets';
+import SocialNetwork from '../SocialNetwork';
+import TweetsTypes from '../TweetsTypes';
+import TweetsLanguage from '../TweetsLanguage';
+import TweetsSource from '../TweetsSource';
+import TweetsMonthly from '../TweetsMonthly';
+import TweetsHourly from '../TweetsHourly';
 
 export default function ProfileIndex() {
 	const [timeRange, setTimeRange] = useState(ETimeRange.all);

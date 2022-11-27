@@ -3,23 +3,25 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
-import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
-import { ITweetsMonthly } from '../../../types/api';
-import { fetchTweetsMonthly } from '../../../api/apiRequests';
-import { ITimeAndUserQuery } from '../../../types/query';
+import { ITimeAndUserProps } from '../../types/timeAndUserProps';
+import { ITweetsHourly } from '../../types/api';
+import { fetchTweetsHourly } from '../../api/apiRequests';
+import { FlexCenter } from '../styled-components/flex';
+import TooltipHelp from '../TooltipHelp';
+import { ITimeAndUserQuery } from '../../types/query';
 
-function TweetsMonthly(props: ITimeAndUserProps) {
+function TweetsHourly(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;
-	const [tweetsMonthly, setTweetsMonthly] = useState<ITweetsMonthly[]>();
+	const [tweetsHourly, setTweetsHourly] = useState<ITweetsHourly[]>();
 
 	useEffect(() => {
 		const query: ITimeAndUserQuery = { timeRange };
 		if (user) query.users = [user];
-		fetchTweetsMonthly(query).then(setTweetsMonthly);
+		fetchTweetsHourly(query).then(setTweetsHourly);
 	}, [timeRange, user]);
 
-	const data = tweetsMonthly?.map(i => ({
-		name: i.date,
+	const data = tweetsHourly?.map(i => ({
+		name: i.hour,
 		y: i.count,
 	}));
 
@@ -47,12 +49,15 @@ function TweetsMonthly(props: ITimeAndUserProps) {
 
 	return (
 		<Wrapper>
-			<Typography
-				sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
-				variant='h5'
-			>
-				Tweets Abundance Monthly
-			</Typography>
+			<FlexCenter>
+				<Typography
+					sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
+					variant='h5'
+				>
+					Tweets Abundance Hourly
+				</Typography>
+				<TooltipHelp title='Tweets are saved in GMT time-zone' />
+			</FlexCenter>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</Wrapper>
 	);
@@ -62,4 +67,4 @@ const Wrapper = styled.div`
 	margin: 50px auto;
 `;
 
-export default TweetsMonthly;
+export default TweetsHourly;

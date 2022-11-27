@@ -1,3 +1,5 @@
+import { EReferencedTweetsType } from './referencedTweetsType';
+
 export interface ITweetAnnotation {
 	start: number;
 	end: number;
@@ -71,7 +73,7 @@ export interface ITweetPublicMetrics {
 }
 
 interface ITweetReferencedTweet {
-	type: string;
+	type: EReferencedTweetsType;
 	id: string;
 }
 

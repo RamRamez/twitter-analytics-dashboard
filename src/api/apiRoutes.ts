@@ -24,4 +24,5 @@ export const apiDashboardRoutes = {
 	tweetsHourly: `${apiRoutes.dashboard}/tweetsHourly`,
 	tweetsSource: `${apiRoutes.dashboard}/tweetsSource`,
 	users: `${apiRoutes.dashboard}/users`,
+	user: `${apiRoutes.dashboard}/user`,
 };

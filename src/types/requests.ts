@@ -9,6 +9,7 @@ import {
 	ITweetsSource,
 	ITweetsType,
 } from './api';
+import { IUser } from './user';
 
 export type TFetchHashtagsAbundance = (
 	query: ITimeAndUserQuery,
@@ -33,3 +34,5 @@ export type TFetchTweetsSource = (query: ITimeAndUserQuery) => Promise<ITweetsSo
 export type TFetchTweetsMonthly = (query: ITimeAndUserQuery) => Promise<ITweetsMonthly[]>;
 
 export type TFetchTweetsHourly = (query: ITimeAndUserQuery) => Promise<ITweetsHourly[]>;
+
+export type TFetchUser = (username: string) => Promise<IUser>;

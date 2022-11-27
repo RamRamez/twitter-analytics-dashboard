@@ -8,15 +8,15 @@ import {
 } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { fetchInfluentialTweets } from '../../../api/apiRequests';
-import { EPublicMetrics } from '../../../types/publicMetrics';
-import { ITweet } from '../../../types/tweet';
-import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
-import TweetsSwiper from '../../TweetsSwiper';
-import { IMedia } from '../../../types/media';
-import { FlexCenter } from '../../styled-components/flex';
-import { IInfluentialTweetsQuery } from '../../../types/query';
-import TooltipHelp from '../../TooltipHelp';
+import { fetchInfluentialTweets } from '../../api/apiRequests';
+import { EPublicMetrics } from '../../types/publicMetrics';
+import { ITweet } from '../../types/tweet';
+import { ITimeAndUserProps } from '../../types/timeAndUserProps';
+import TweetsSwiper from '../TweetsSwiper';
+import { IMedia } from '../../types/media';
+import { FlexCenter } from '../styled-components/flex';
+import { IInfluentialTweetsQuery } from '../../types/query';
+import TooltipHelp from '../TooltipHelp';
 
 export type TTweetsWithMedia = (ITweet & { media?: IMedia[] })[];
 

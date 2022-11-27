@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import zIndex from '@mui/material/styles/zIndex';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { EUserRole } from '../../types/userRole';
+import { EDashboardUserRole } from '../../types/userRole';
 import routes from '../../application/routes';
 import { apiSignOut } from '../../api/apiRequests';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
@@ -43,7 +43,7 @@ export default function RightMenu(props: IProps) {
 				<DropDown onClick={handleClose}>
 					<MenuItem>Welcome, {name}</MenuItem>
 					<Divider />
-					{role === EUserRole.admin && (
+					{role === EDashboardUserRole.admin && (
 						<Link to={routes.admin}>
 							<MenuItem>
 								<ListItemIcon>

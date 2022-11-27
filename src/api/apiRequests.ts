@@ -10,6 +10,7 @@ import {
 	TFetchTweetsMonthly,
 	TFetchTweetsSource,
 	TFetchTweetsTypes,
+	TFetchUser,
 } from '../types/requests';
 
 interface IApiSignIn {
@@ -68,3 +69,7 @@ export const fetchTweetsHourly: TFetchTweetsHourly = query => {
 export function fetchUsers(): Promise<IUserList[]> {
 	return getRequest(apiDashboardRoutes.users);
 }
+
+export const fetchUser: TFetchUser = username => {
+	return getRequest(`${apiDashboardRoutes.user}/${username}`);
+};

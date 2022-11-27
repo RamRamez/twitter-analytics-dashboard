@@ -3,23 +3,23 @@ import styled from '@emotion/styled';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import { useEffect, useState } from 'react';
-import { ITweetsLanguages } from '../../../types/api';
-import { fetchTweetsLanguages } from '../../../api/apiRequests';
-import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
-import { ITimeAndUserQuery } from '../../../types/query';
+import { ITweetsSource } from '../../types/api';
+import { fetchTweetsSource } from '../../api/apiRequests';
+import { ITimeAndUserProps } from '../../types/timeAndUserProps';
+import { ITimeAndUserQuery } from '../../types/query';
 
-function TweetsLanguage(props: ITimeAndUserProps) {
+function TweetsSource(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;
-	const [tweetsLanguages, setTweetsLanguages] = useState<ITweetsLanguages[]>();
+	const [tweetsSource, setTweetsSource] = useState<ITweetsSource[]>();
 
 	useEffect(() => {
 		const query: ITimeAndUserQuery = { timeRange };
 		if (user) query.users = [user];
-		fetchTweetsLanguages(query).then(setTweetsLanguages);
+		fetchTweetsSource(query).then(setTweetsSource);
 	}, [timeRange, user]);
 
-	const data = tweetsLanguages?.map(i => ({
-		name: i.lang,
+	const data = tweetsSource?.map(i => ({
+		name: i.source,
 		y: i.count,
 	}));
 	const options = {
@@ -58,7 +58,7 @@ function TweetsLanguage(props: ITimeAndUserProps) {
 				sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
 				variant='h5'
 			>
-				Tweets Language
+				Tweets Source
 			</Typography>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</Wrapper>
@@ -69,4 +69,4 @@ const Wrapper = styled.div`
 	margin: 50px auto;
 `;
 
-export default TweetsLanguage;
+export default TweetsSource;

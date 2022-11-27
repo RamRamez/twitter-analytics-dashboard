@@ -3,12 +3,12 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { fetchTweetsTypes } from '../../../api/apiRequests';
-import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
-import { ITweetsType } from '../../../types/api';
-import { FlexCenter } from '../../styled-components/flex';
-import { ITimeAndUserQuery } from '../../../types/query';
-import TooltipHelp from '../../TooltipHelp';
+import { fetchTweetsTypes } from '../../api/apiRequests';
+import { ITimeAndUserProps } from '../../types/timeAndUserProps';
+import { ITweetsType } from '../../types/api';
+import { FlexCenter } from '../styled-components/flex';
+import { ITimeAndUserQuery } from '../../types/query';
+import TooltipHelp from '../TooltipHelp';
 
 function TweetsTypes(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;

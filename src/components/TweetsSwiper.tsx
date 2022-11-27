@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { FlexCenter } from './styled-components/flex';
-import { TTweetsWithMedia } from './views/general/InfluentialTweets';
+import { TTweetsWithMedia } from './views/InfluentialTweets';
 
 interface IProps {
 	tweets?: TTweetsWithMedia;
