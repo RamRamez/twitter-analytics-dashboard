@@ -5,15 +5,18 @@ import Highcharts from 'highcharts';
 import { useEffect, useState } from 'react';
 import { ITweetsSource } from '../../../types/api';
 import { fetchTweetsSource } from '../../../api/apiRequests';
-import { ITimeRangeProps } from '../../../types/timeRange';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
+import { ITimeAndUserQuery } from '../../../types/query';
 
-function TweetsSource(props: ITimeRangeProps) {
-	const { timeRange } = props;
+function TweetsSource(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
 	const [tweetsSource, setTweetsSource] = useState<ITweetsSource[]>();
 
 	useEffect(() => {
-		fetchTweetsSource().then(setTweetsSource);
-	}, [timeRange]);
+		const query: ITimeAndUserQuery = { timeRange };
+		if (user) query.users = [user];
+		fetchTweetsSource(query).then(setTweetsSource);
+	}, [timeRange, user]);
 
 	const data = tweetsSource?.map(i => ({
 		name: i.source,

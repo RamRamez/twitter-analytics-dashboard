@@ -3,7 +3,7 @@ import zIndex from '@mui/material/styles/zIndex';
 import { colors, Divider, IconButton, MenuItem } from '@mui/material';
 import { History } from '@mui/icons-material';
 import { useRef, useState } from 'react';
-import { ETimeRange } from '../types/timeRange';
+import { ETimeRange } from '../types/timeAndUserProps';
 import { useOnClickOutside } from '../hooks/useOnClickOutside';
 
 interface IProps {

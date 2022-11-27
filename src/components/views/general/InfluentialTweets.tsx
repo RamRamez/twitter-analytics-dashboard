@@ -1,33 +1,34 @@
 import {
 	Box,
 	FormControl,
-	IconButton,
 	InputLabel,
 	MenuItem,
 	Select,
-	Tooltip,
 	Typography,
 } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { Help } from '@mui/icons-material';
 import { fetchInfluentialTweets } from '../../../api/apiRequests';
 import { EPublicMetrics } from '../../../types/publicMetrics';
 import { ITweet } from '../../../types/tweet';
-import { ITimeRangeProps } from '../../../types/timeRange';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
 import TweetsSwiper from '../../TweetsSwiper';
 import { IMedia } from '../../../types/media';
 import { FlexCenter } from '../../styled-components/flex';
+import { IInfluentialTweetsQuery } from '../../../types/query';
+import TooltipHelp from '../../TooltipHelp';
 
 export type TTweetsWithMedia = (ITweet & { media?: IMedia[] })[];
 
-function InfluentialTweets(props: ITimeRangeProps) {
-	const { timeRange } = props;
+function InfluentialTweets(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
 	const [influentialTweets, setInfluentialTweets] = useState<TTweetsWithMedia>();
 	const [sortBy, setSortBy] = useState<EPublicMetrics>(EPublicMetrics.retweet_count);
 
 	useEffect(() => {
-		fetchInfluentialTweets({ sortBy, timeRange }).then(res => {
+		const query: IInfluentialTweetsQuery = { timeRange, sortBy };
+		if (user) query.users = [user];
+		fetchInfluentialTweets(query).then(res => {
 			const _influentialTweets: TTweetsWithMedia = res.influentialTweets;
 			_influentialTweets.map(tweet => {
 				const mediaKeys = tweet.attachments?.media_keys;
@@ -45,7 +46,7 @@ function InfluentialTweets(props: ITimeRangeProps) {
 			});
 			setInfluentialTweets(_influentialTweets);
 		});
-	}, [sortBy, timeRange]);
+	}, [sortBy, timeRange, user]);
 
 	return (
 		<Wrapper>
@@ -53,14 +54,7 @@ function InfluentialTweets(props: ITimeRangeProps) {
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 					Most Influential Tweets
 				</Typography>
-				<Tooltip
-					placement='top'
-					title='Most influential tweets in the DB excluding retweets. Influential tweets are tweets with the most retweets, replies, likes, and quotes.'
-				>
-					<IconButton>
-						<Help />
-					</IconButton>
-				</Tooltip>
+				<TooltipHelp title={tooltipCopy} />
 			</FlexCenter>
 			<Box sx={{ width: 220, mx: 'auto', mt: 5 }}>
 				<FormControl fullWidth>
@@ -87,6 +81,9 @@ function InfluentialTweets(props: ITimeRangeProps) {
 		</Wrapper>
 	);
 }
+
+const tooltipCopy =
+	'Most influential tweets in the DB excluding retweets. Influential tweets are tweets with the most retweets, replies, likes, and quotes.';
 
 const Wrapper = styled.div`
 	margin: 50px auto;

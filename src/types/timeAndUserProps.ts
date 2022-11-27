@@ -10,3 +10,9 @@ export enum ETimeRange {
 export interface ITimeRangeProps {
 	timeRange: ETimeRange;
 }
+
+interface IUserProps {
+	user?: string;
+}
+
+export interface ITimeAndUserProps extends ITimeRangeProps, IUserProps {}

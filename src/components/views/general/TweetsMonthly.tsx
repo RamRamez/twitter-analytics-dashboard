@@ -3,17 +3,20 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
-import { ITimeRangeProps } from '../../../types/timeRange';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
 import { ITweetsMonthly } from '../../../types/api';
 import { fetchTweetsMonthly } from '../../../api/apiRequests';
+import { ITimeAndUserQuery } from '../../../types/query';
 
-function TweetsMonthly(props: ITimeRangeProps) {
-	const { timeRange } = props;
+function TweetsMonthly(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
 	const [tweetsMonthly, setTweetsMonthly] = useState<ITweetsMonthly[]>();
 
 	useEffect(() => {
-		fetchTweetsMonthly({ timeRange }).then(setTweetsMonthly);
-	}, [timeRange]);
+		const query: ITimeAndUserQuery = { timeRange };
+		if (user) query.users = [user];
+		fetchTweetsMonthly(query).then(setTweetsMonthly);
+	}, [timeRange, user]);
 
 	const data = tweetsMonthly?.map(i => ({
 		name: i.date,

@@ -1,13 +1,21 @@
 import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import { hashtagAbundance } from './General.index';
+import { useEffect, useState } from 'react';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
+import { fetchHashtagsAbundance } from '../../../api/apiRequests';
+import { IHashtagAbundance } from '../../../types/api';
+import { ITimeAndUserQuery } from '../../../types/query';
 
-interface IProps {
-	tags?: hashtagAbundance[];
-}
+function HashtagsAbundance(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
+	const [hashtagsAbundance, setHashtagsAbundance] = useState<IHashtagAbundance[]>();
 
-function HashtagsAbundance(props: IProps) {
-	const { tags } = props;
+	useEffect(() => {
+		const query: ITimeAndUserQuery = { timeRange };
+		if (user) query.users = [user];
+		fetchHashtagsAbundance(query).then(setHashtagsAbundance);
+	}, [timeRange, user]);
+
 	return (
 		<Wrapper>
 			<Typography
@@ -17,7 +25,7 @@ function HashtagsAbundance(props: IProps) {
 				Hashtags Abundance
 			</Typography>
 			<TagsContainer>
-				{tags?.map(tag => (
+				{hashtagsAbundance?.map(tag => (
 					<div key={tag.tag}>
 						<Typography variant='h6'>{tag.tag}</Typography>
 						<Typography

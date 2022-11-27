@@ -2,6 +2,17 @@ import { TTweetTypes } from './referencedTweetsType';
 import { ITweet } from './tweet';
 import { IMedia } from './media';
 
+export interface IGeneralStats {
+	tweetCount: number;
+	uniqueUsers: number;
+	uniqueHashtags: number;
+}
+
+export interface IHashtagAbundance {
+	tag: string;
+	count: number;
+}
+
 export interface ISocialNetwork {
 	count: number;
 	username: string;
@@ -35,4 +46,9 @@ export interface ITweetsHourly {
 export interface ITweetsSource {
 	count: number;
 	source: string;
+}
+
+export interface IUserList {
+	username: string;
+	name: string;
 }

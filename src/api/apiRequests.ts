@@ -1,14 +1,16 @@
 import { apiDashboardRoutes, apiRoutes } from './apiRoutes';
 import { getRequest, postRequest } from '../lib/requests';
+import { IGeneralStats, IUserList } from '../types/api';
 import {
-	IInfluentialTweets,
-	ISocialNetwork,
-	ITweetsHourly,
-	ITweetsLanguages,
-	ITweetsMonthly,
-	ITweetsSource,
-	ITweetsType,
-} from '../types/api';
+	TFetchHashtagsAbundance,
+	TFetchInfluentialTweets,
+	TFetchSocialNetwork,
+	TFetchTweetsHourly,
+	TFetchTweetsLanguages,
+	TFetchTweetsMonthly,
+	TFetchTweetsSource,
+	TFetchTweetsTypes,
+} from '../types/requests';
 
 interface IApiSignIn {
 	username: string;
@@ -27,34 +29,42 @@ export function apiSignOut() {
 	return getRequest(apiRoutes.logout);
 }
 
-export function apiDashboardGeneral(query?: {}) {
+export function fetchGeneralStats(query?: {}): Promise<IGeneralStats> {
 	return getRequest(apiDashboardRoutes.general, query);
 }
 
-export function fetchInfluentialTweets(query?: {}): Promise<IInfluentialTweets> {
+export const fetchHashtagsAbundance: TFetchHashtagsAbundance = query => {
+	return getRequest(apiDashboardRoutes.hashtagsAbundance, query);
+};
+
+export const fetchInfluentialTweets: TFetchInfluentialTweets = query => {
 	return getRequest(apiDashboardRoutes.mostInfluentialTweets, query);
-}
+};
 
-export function fetchSocialNetwork(query?: {}): Promise<ISocialNetwork[]> {
+export const fetchSocialNetwork: TFetchSocialNetwork = query => {
 	return getRequest(apiDashboardRoutes.socialNetwork, query);
-}
+};
 
-export function fetchTweetsTypes(query?: {}): Promise<ITweetsType[]> {
+export const fetchTweetsTypes: TFetchTweetsTypes = query => {
 	return getRequest(apiDashboardRoutes.tweetsTypes, query);
-}
+};
 
-export function fetchTweetsLanguages(query?: {}): Promise<ITweetsLanguages[]> {
+export const fetchTweetsLanguages: TFetchTweetsLanguages = query => {
 	return getRequest(apiDashboardRoutes.tweetsLanguages, query);
-}
+};
 
-export function fetchTweetsMonthly(query?: {}): Promise<ITweetsMonthly[]> {
-	return getRequest(apiDashboardRoutes.tweetsMonthly, query);
-}
-
-export function fetchTweetsHourly(query?: {}): Promise<ITweetsHourly[]> {
-	return getRequest(apiDashboardRoutes.tweetsHourly, query);
-}
-
-export function fetchTweetsSource(query?: {}): Promise<ITweetsSource[]> {
+export const fetchTweetsSource: TFetchTweetsSource = query => {
 	return getRequest(apiDashboardRoutes.tweetsSource, query);
+};
+
+export const fetchTweetsMonthly: TFetchTweetsMonthly = query => {
+	return getRequest(apiDashboardRoutes.tweetsMonthly, query);
+};
+
+export const fetchTweetsHourly: TFetchTweetsHourly = query => {
+	return getRequest(apiDashboardRoutes.tweetsHourly, query);
+};
+
+export function fetchUsers(): Promise<IUserList[]> {
+	return getRequest(apiDashboardRoutes.users);
 }

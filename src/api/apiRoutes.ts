@@ -15,6 +15,7 @@ export const apiAdminRoutes = {
 
 export const apiDashboardRoutes = {
 	general: apiRoutes.dashboard,
+	hashtagsAbundance: `${apiRoutes.dashboard}/hashtagsAbundance`,
 	mostInfluentialTweets: `${apiRoutes.dashboard}/mostInfluentialTweets`,
 	socialNetwork: `${apiRoutes.dashboard}/socialNetwork`,
 	tweetsTypes: `${apiRoutes.dashboard}/tweetsTypes`,
@@ -22,4 +23,5 @@ export const apiDashboardRoutes = {
 	tweetsMonthly: `${apiRoutes.dashboard}/tweetsMonthly`,
 	tweetsHourly: `${apiRoutes.dashboard}/tweetsHourly`,
 	tweetsSource: `${apiRoutes.dashboard}/tweetsSource`,
+	users: `${apiRoutes.dashboard}/users`,
 };

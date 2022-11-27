@@ -1,21 +1,24 @@
-import { IconButton, Tooltip, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
-import { Help } from '@mui/icons-material';
-import { ITimeRangeProps } from '../../../types/timeRange';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
 import { ITweetsHourly } from '../../../types/api';
 import { fetchTweetsHourly } from '../../../api/apiRequests';
 import { FlexCenter } from '../../styled-components/flex';
+import TooltipHelp from '../../TooltipHelp';
+import { ITimeAndUserQuery } from '../../../types/query';
 
-function TweetsHourly(props: ITimeRangeProps) {
-	const { timeRange } = props;
+function TweetsHourly(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
 	const [tweetsHourly, setTweetsHourly] = useState<ITweetsHourly[]>();
 
 	useEffect(() => {
-		fetchTweetsHourly({ timeRange }).then(setTweetsHourly);
-	}, [timeRange]);
+		const query: ITimeAndUserQuery = { timeRange };
+		if (user) query.users = [user];
+		fetchTweetsHourly(query).then(setTweetsHourly);
+	}, [timeRange, user]);
 
 	const data = tweetsHourly?.map(i => ({
 		name: i.hour,
@@ -53,11 +56,7 @@ function TweetsHourly(props: ITimeRangeProps) {
 				>
 					Tweets Abundance Hourly
 				</Typography>
-				<Tooltip placement='top' title='Tweets are saved in GMT time-zone'>
-					<IconButton>
-						<Help />
-					</IconButton>
-				</Tooltip>
+				<TooltipHelp title='Tweets are saved in GMT time-zone' />
 			</FlexCenter>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</Wrapper>

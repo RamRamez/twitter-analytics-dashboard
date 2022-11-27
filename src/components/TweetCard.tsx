@@ -9,6 +9,7 @@ import HeartIcon from '../assets/images/heart.svg';
 import QuoteIcon from '../assets/images/quote.svg';
 import { EReferencedTweetsType } from '../types/referencedTweetsType';
 import { IMedia } from '../types/media';
+import TooltipHelp from './TooltipHelp';
 
 interface IProps {
 	tweet: ITweet & { media?: IMedia[] };
@@ -54,6 +55,9 @@ export default function TweetCard(props: IProps) {
 				<Typography variant='subtitle2' color='primary.main'>
 					{tweetType}
 				</Typography>
+				{tweet.possibly_sensitive && (
+					<TooltipHelp title='This tweet is marked as sensitive content' />
+				)}
 			</Header>
 			<a target='_blank' rel='noopener noreferrer' href={formatTweetLink(tweet.id)}>
 				<Typography variant='body1'>{tweet.text}</Typography>

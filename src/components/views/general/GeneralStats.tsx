@@ -1,30 +1,31 @@
-import { IconButton, Tooltip, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import { Help } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
 import StatCard from '../../StatCard';
 import TwitterIcon from '../../../assets/images/twitter-stat-card.png';
 import PeopleIcon from '../../../assets/images/people-team.svg';
 import HashtagIcon from '../../../assets/images/hashtag.png';
-import { IGeneralStats } from './General.index';
 import { FlexCenter } from '../../styled-components/flex';
+import { ITimeRangeProps } from '../../../types/timeAndUserProps';
+import { fetchGeneralStats } from '../../../api/apiRequests';
+import { IGeneralStats } from '../../../types/api';
+import TooltipHelp from '../../TooltipHelp';
 
-interface IProps {
-	generalStats?: IGeneralStats;
-}
+function GeneralStats({ timeRange }: ITimeRangeProps) {
+	const [generalStats, setGeneralStats] = useState<IGeneralStats>();
+	const { tweetCount, uniqueUsers, uniqueHashtags } = generalStats || {};
 
-function GeneralStats(props: IProps) {
-	const { tweetCount, uniqueUsers, uniqueHashtags } = props.generalStats || {};
+	useEffect(() => {
+		fetchGeneralStats({ timeRange }).then(setGeneralStats);
+	}, [timeRange]);
+
 	return (
 		<Wrapper>
 			<FlexCenter>
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 					General Statistics
 				</Typography>
-				<Tooltip placement='top' title={tooltipCopy}>
-					<IconButton>
-						<Help />
-					</IconButton>
-				</Tooltip>
+				<TooltipHelp title={tooltipCopy} />
 			</FlexCenter>
 			<GeneralCards>
 				<StatCard title='Tweets' value={tweetCount} icon={TwitterIcon} />
@@ -40,7 +41,7 @@ function GeneralStats(props: IProps) {
 }
 
 const tooltipCopy =
-	'Showing general information about tweets in the DB. Tweets saved in the DB are tweets of users that are added to the dashboard. In case Tweet is a Retweeted, Quoted or Replied tweet, the referenced tweet is also saved in the DB.';
+	'Showing general information about all tweets in the DB. Tweets saved in the DB are tweets of users that are added to the dashboard. In case Tweet is a Retweeted, Quoted or Replied tweet, the referenced tweet is also saved in the DB.';
 
 const Wrapper = styled.div`
 	margin: 50px auto;

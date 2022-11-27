@@ -5,15 +5,18 @@ import Highcharts from 'highcharts';
 import { useEffect, useState } from 'react';
 import { ITweetsLanguages } from '../../../types/api';
 import { fetchTweetsLanguages } from '../../../api/apiRequests';
-import { ITimeRangeProps } from '../../../types/timeRange';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
+import { ITimeAndUserQuery } from '../../../types/query';
 
-function TweetsLanguage(props: ITimeRangeProps) {
-	const { timeRange } = props;
+function TweetsLanguage(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
 	const [tweetsLanguages, setTweetsLanguages] = useState<ITweetsLanguages[]>();
 
 	useEffect(() => {
-		fetchTweetsLanguages().then(setTweetsLanguages);
-	}, [timeRange]);
+		const query: ITimeAndUserQuery = { timeRange };
+		if (user) query.users = [user];
+		fetchTweetsLanguages(query).then(setTweetsLanguages);
+	}, [timeRange, user]);
 
 	const data = tweetsLanguages?.map(i => ({
 		name: i.lang,

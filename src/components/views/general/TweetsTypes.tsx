@@ -1,21 +1,24 @@
-import { IconButton, Tooltip, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Help } from '@mui/icons-material';
 import { fetchTweetsTypes } from '../../../api/apiRequests';
-import { ITimeRangeProps } from '../../../types/timeRange';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
 import { ITweetsType } from '../../../types/api';
 import { FlexCenter } from '../../styled-components/flex';
+import { ITimeAndUserQuery } from '../../../types/query';
+import TooltipHelp from '../../TooltipHelp';
 
-function TweetsTypes(props: ITimeRangeProps) {
-	const { timeRange } = props;
+function TweetsTypes(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
 	const [tweetsTypes, setTweetsTypes] = useState<ITweetsType[]>();
 
 	useEffect(() => {
-		fetchTweetsTypes(timeRange).then(setTweetsTypes);
-	}, [timeRange]);
+		const query: ITimeAndUserQuery = { timeRange };
+		if (user) query.users = [user];
+		fetchTweetsTypes(query).then(setTweetsTypes);
+	}, [timeRange, user]);
 
 	const data = tweetsTypes?.map(i => ({
 		name: i.type,
@@ -57,20 +60,16 @@ function TweetsTypes(props: ITimeRangeProps) {
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 					Tweets Types
 				</Typography>
-				<Tooltip
-					placement='top'
-					title='Some reply tweets contain quotes. Thus, the sum of tweet types may be greater than the total number of tweets.'
-				>
-					<IconButton>
-						<Help />
-					</IconButton>
-				</Tooltip>
+				<TooltipHelp title={tooltipCopy} />
 			</FlexCenter>
 			<br />
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</Wrapper>
 	);
 }
+
+const tooltipCopy =
+	'Some reply tweets contain quotes. Thus, the sum of tweet types may be greater than the total number of tweets.';
 
 const Wrapper = styled.div`
 	margin: 50px auto;

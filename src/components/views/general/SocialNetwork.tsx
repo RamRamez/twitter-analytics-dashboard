@@ -1,30 +1,31 @@
 import {
 	Box,
 	FormControl,
-	IconButton,
 	InputLabel,
 	MenuItem,
 	Select,
-	Tooltip,
 	Typography,
 } from '@mui/material';
 import styled from '@emotion/styled';
-import { Help } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { FlexCenter } from '../../styled-components/flex';
 import { fetchSocialNetwork } from '../../../api/apiRequests';
 import { ISocialNetwork } from '../../../types/api';
 import { EReferencedTweetsType } from '../../../types/referencedTweetsType';
-import { ITimeRangeProps } from '../../../types/timeRange';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
+import { ISocialNetworkQuery } from '../../../types/query';
+import TooltipHelp from '../../TooltipHelp';
 
-function SocialNetwork(props: ITimeRangeProps) {
-	const { timeRange } = props;
+function SocialNetwork(props: ITimeAndUserProps) {
+	const { timeRange, user } = props;
 	const [socialNetwork, setSocialNetwork] = useState<ISocialNetwork[]>();
 	const [type, setType] = useState(EReferencedTweetsType.retweeted);
 
 	useEffect(() => {
-		fetchSocialNetwork({ timeRange, type }).then(setSocialNetwork);
-	}, [type, timeRange]);
+		const query: ISocialNetworkQuery = { timeRange, type };
+		if (user) query.users = [user];
+		fetchSocialNetwork(query).then(setSocialNetwork);
+	}, [type, timeRange, user]);
 
 	return (
 		<Wrapper>
@@ -32,11 +33,7 @@ function SocialNetwork(props: ITimeRangeProps) {
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 					Social Network Analysis
 				</Typography>
-				<Tooltip placement='top' title={tooltipCopy}>
-					<IconButton>
-						<Help />
-					</IconButton>
-				</Tooltip>
+				<TooltipHelp title={tooltipCopy} />
 			</FlexCenter>
 			<Box sx={{ width: 220, mx: 'auto', mt: 5 }}>
 				<FormControl fullWidth>
@@ -75,7 +72,7 @@ function SocialNetwork(props: ITimeRangeProps) {
 }
 
 const tooltipCopy =
-	'Social Network Analysis shows which twitter users has influenced DB users the most. It has three types: retweeted, quoted and replied to. e.g. type retweeted means that the user/DB users has retweeted whose tweets the most.';
+	'Social Network Analysis shows which twitter users has influenced DB users (or selected user) the most. It has three types: retweeted, quoted and replied to. e.g. type retweeted means that the user/DB users has retweeted whose tweets the most.';
 
 const TagsContainer = styled.div`
 	display: flex;
