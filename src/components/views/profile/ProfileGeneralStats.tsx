@@ -1,44 +1,72 @@
-import { Typography } from '@mui/material';
-import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { FlexCenter } from '../../styled-components/flex';
+import styled from '@emotion/styled';
+import { Typography } from '@mui/material';
+import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
+import { fetchUserGeneralStats } from '../../../api/apiRequests';
+import { IUserGeneralStats } from '../../../types/api';
 import StatCard from '../../StatCard';
 import TwitterIcon from '../../../assets/images/twitter-stat-card.png';
 import HashtagIcon from '../../../assets/images/hashtag.png';
 import TooltipHelp from '../../TooltipHelp';
-import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
-import { fetchUser } from '../../../api/apiRequests';
-import { IUser } from '../../../types/user';
+import { FlexCenter } from '../../styled-components/flex';
+import RetweetIcon from '../../../assets/images/retweet.svg';
+import ReplyIcon from '../../../assets/images/reply.svg';
+import HeartIcon from '../../../assets/images/heart.svg';
+import QuoteIcon from '../../../assets/images/quote.svg';
 
-export default function ProfileGeneralStats(props: ITimeAndUserProps) {
-	const { timeRange, user } = props;
-	const [userData, setUserData] = useState<IUser>();
-	console.log(userData);
+export default function ProfileGeneralStats({ user, timeRange }: ITimeAndUserProps) {
+	const [generalStats, setGeneralStats] = useState<IUserGeneralStats>();
+
+	const { tweetCount, uniqueHashtagsCount, publicMetricsAverage } = generalStats || {};
+	const { replyAvg, retweetAvg, quoteAvg, likeAvg } = publicMetricsAverage || {};
 
 	useEffect(() => {
-		fetchUser(user!).then(setUserData);
-	}, [timeRange, user]);
+		fetchUserGeneralStats(user!, { timeRange }).then(setGeneralStats);
+	}, [user, timeRange]);
 
 	return (
-		<Wrapper>
+		<StatsContainer>
 			<FlexCenter>
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
-					General Statistics
+					Twitter Account Stats
 				</Typography>
 				<TooltipHelp title={tooltipCopy} />
 			</FlexCenter>
 			<GeneralCards>
-				<StatCard title='Tweets' value={2} icon={TwitterIcon} />
-				<StatCard title='Unique Hashtags' value={345} icon={HashtagIcon} />
+				<StatCard title='Tweets' value={tweetCount} icon={TwitterIcon} />
+				<StatCard
+					title='Unique Hashtags'
+					value={uniqueHashtagsCount}
+					icon={HashtagIcon}
+				/>
+				<StatCard
+					title='Retweet Average'
+					value={retweetAvg?.toFixed(2)}
+					icon={RetweetIcon}
+				/>
+				<StatCard
+					title='Reply Average'
+					value={replyAvg?.toFixed(2)}
+					icon={ReplyIcon}
+				/>
+				<StatCard
+					title='Quote Average'
+					value={quoteAvg?.toFixed(2)}
+					icon={QuoteIcon}
+				/>
+				<StatCard
+					title='Like Average'
+					value={likeAvg?.toFixed(2)}
+					icon={HeartIcon}
+				/>
 			</GeneralCards>
-		</Wrapper>
+		</StatsContainer>
 	);
 }
 
-const tooltipCopy =
-	'Showing general information about selected user. Tweets saved in the DB are tweets of users that are added to the dashboard. In case Tweet is a Retweeted, Quoted or Replied tweet, the referenced tweet is also saved in the DB.';
+const tooltipCopy = `These stats are based on the user's tweets saved in DB.`;
 
-const Wrapper = styled.div`
+const StatsContainer = styled.div`
 	margin: 50px auto;
 `;
 

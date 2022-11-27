@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 interface IStatCardProps {
 	title: string;
-	value?: number;
+	value?: number | string;
 	icon: string;
 }
 

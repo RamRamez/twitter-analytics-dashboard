@@ -1,6 +1,6 @@
 import { colors, Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import { PlayCircleOutline, Visibility } from '@mui/icons-material';
+import { PlayCircleOutline, PushPin, Visibility } from '@mui/icons-material';
 import { ITweet } from '../types/tweet';
 import { formatAuthorLink, formatDate, formatTweetLink } from '../lib/helpers';
 import RetweetIcon from '../assets/images/retweet.svg';
@@ -13,10 +13,11 @@ import TooltipHelp from './TooltipHelp';
 
 interface IProps {
 	tweet: ITweet & { media?: IMedia[] };
+	pinned?: boolean;
 }
 
 export default function TweetCard(props: IProps) {
-	const { tweet } = props;
+	const { tweet, pinned } = props;
 	const tweetTypes = tweet.referenced_tweets?.map(ref => ref.type);
 	let tweetType;
 	if (tweetTypes?.includes(EReferencedTweetsType.retweeted)) {
@@ -31,6 +32,12 @@ export default function TweetCard(props: IProps) {
 
 	return (
 		<CardContainer>
+			{pinned && (
+				<PinnedIcon variant='subtitle2' color='textSecondary'>
+					<PushPin />
+					<span>Pinned Tweet</span>
+				</PinnedIcon>
+			)}
 			<Header>
 				<IconContainer>
 					<img
@@ -124,6 +131,14 @@ export default function TweetCard(props: IProps) {
 		</CardContainer>
 	);
 }
+
+const PinnedIcon = styled(Typography)`
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-weight: bold;
+	margin-bottom: 10px;
+`;
 
 const PlayIcon = styled.a`
 	position: absolute;

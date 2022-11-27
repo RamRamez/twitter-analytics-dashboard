@@ -1,9 +1,10 @@
-import { apiDashboardRoutes, apiRoutes } from './apiRoutes';
+import { apiDashboardRoutes, apiRoutes, userRoutes } from './apiRoutes';
 import { getRequest, postRequest } from '../lib/requests';
 import { IGeneralStats, IUserList } from '../types/api';
 import {
 	TFetchHashtagsAbundance,
 	TFetchInfluentialTweets,
+	TFetchSearchTweets,
 	TFetchSocialNetwork,
 	TFetchTweetsHourly,
 	TFetchTweetsLanguages,
@@ -11,6 +12,7 @@ import {
 	TFetchTweetsSource,
 	TFetchTweetsTypes,
 	TFetchUser,
+	TFetchUserGeneralStats,
 } from '../types/requests';
 
 interface IApiSignIn {
@@ -70,6 +72,17 @@ export function fetchUsers(): Promise<IUserList[]> {
 	return getRequest(apiDashboardRoutes.users);
 }
 
+export const fetchSearchTweets: TFetchSearchTweets = query => {
+	return getRequest(apiDashboardRoutes.searchTweets, query);
+};
+
 export const fetchUser: TFetchUser = username => {
 	return getRequest(`${apiDashboardRoutes.user}/${username}`);
+};
+
+export const fetchUserGeneralStats: TFetchUserGeneralStats = (username, query) => {
+	return getRequest(
+		`${apiDashboardRoutes.user}/${username}${userRoutes.general}`,
+		query,
+	);
 };

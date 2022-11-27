@@ -11,7 +11,7 @@ export interface ITimeRangeProps {
 	timeRange: ETimeRange;
 }
 
-interface IUserProps {
+export interface IUserProps {
 	user?: string;
 }
 

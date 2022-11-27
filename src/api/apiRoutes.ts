@@ -24,5 +24,10 @@ export const apiDashboardRoutes = {
 	tweetsHourly: `${apiRoutes.dashboard}/tweetsHourly`,
 	tweetsSource: `${apiRoutes.dashboard}/tweetsSource`,
 	users: `${apiRoutes.dashboard}/users`,
+	searchTweets: `${apiRoutes.dashboard}/searchTweets`,
 	user: `${apiRoutes.dashboard}/user`,
+};
+
+export const userRoutes = {
+	general: '/generalStats',
 };

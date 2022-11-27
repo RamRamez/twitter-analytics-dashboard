@@ -1,6 +1,7 @@
 import { TTweetTypes } from './referencedTweetsType';
 import { ITweet } from './tweet';
 import { IMedia } from './media';
+import { IUser } from './user';
 
 export interface IGeneralStats {
 	tweetCount: number;
@@ -51,4 +52,21 @@ export interface ITweetsSource {
 export interface IUserList {
 	username: string;
 	name: string;
+}
+
+export interface IFetchUser {
+	user: IUser;
+	pinnedTweet?: ITweet;
+	media?: IMedia[];
+}
+
+export interface IUserGeneralStats {
+	tweetCount: number;
+	uniqueHashtagsCount: number;
+	publicMetricsAverage: {
+		retweetAvg: number;
+		replyAvg: number;
+		likeAvg: number;
+		quoteAvg: number;
+	};
 }

@@ -2,7 +2,7 @@ import { Container, Divider } from '@mui/material';
 import { useState } from 'react';
 import { ETimeRange } from '../../../types/timeAndUserProps';
 import TimeRangeMenu from '../../TimeRangeMenu';
-import ProfileGeneralStats from './ProfileGeneralStats';
+import TwitterAccountStats from './TwitterAccountStats';
 import ProfileSelect from './ProfileSelect';
 import HashtagsAbundance from '../HashtagsAbundance';
 import InfluentialTweets from '../InfluentialTweets';
@@ -12,6 +12,8 @@ import TweetsLanguage from '../TweetsLanguage';
 import TweetsSource from '../TweetsSource';
 import TweetsMonthly from '../TweetsMonthly';
 import TweetsHourly from '../TweetsHourly';
+import ProfileGeneralStats from './ProfileGeneralStats';
+import ProfileSearch from './ProfileSearch';
 
 export default function ProfileIndex() {
 	const [timeRange, setTimeRange] = useState(ETimeRange.all);
@@ -23,9 +25,13 @@ export default function ProfileIndex() {
 			{user && (
 				<>
 					<TimeRangeMenu timeRange={timeRange} setTimeRange={setTimeRange} />
+					<TwitterAccountStats user={user} />
+					<Divider />
 					<ProfileGeneralStats user={user} timeRange={timeRange} />
 					<Divider />
 					<HashtagsAbundance user={user} timeRange={timeRange} />
+					<Divider />
+					<ProfileSearch timeRange={timeRange} user={user} />
 					<Divider />
 					<InfluentialTweets user={user} timeRange={timeRange} />
 					<Divider />

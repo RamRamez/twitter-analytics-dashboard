@@ -19,3 +19,7 @@ export interface IInfluentialTweetsQuery extends ITimeAndUserQuery {
 export interface ISocialNetworkQuery extends ITimeAndUserQuery {
 	type: EReferencedTweetsType;
 }
+
+export interface ISearchQuery extends ITimeAndUserQuery {
+	search?: string;
+}
