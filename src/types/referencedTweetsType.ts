@@ -4,7 +4,7 @@ export enum EReferencedTweetsType {
 	quoted = 'quoted',
 }
 
-enum TTweetOnly {
+export enum TTweetOnly {
 	tweet = 'tweet',
 }
 

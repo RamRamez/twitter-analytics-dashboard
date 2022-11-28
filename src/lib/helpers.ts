@@ -1,4 +1,5 @@
 import { EToastType, gToast } from '../components/gToast';
+import { IUser } from '../types/user';
 
 export const showToastError = (err: any) => {
 	const errorMessage =
@@ -25,4 +26,22 @@ export const formatTweetLink = (tweetId: string) => {
 
 export const formatAuthorLink = (authorId?: string) => {
 	return `https://twitter.com/${authorId}`;
+};
+
+export const displayUrl = (user: IUser) => {
+	const { url, entities } = user;
+	const urls = entities?.url?.urls;
+	if (urls && urls?.length > 0) {
+		return urls.find(u => u.url === url)?.display_url;
+	}
+	return url;
+};
+
+export const expandedUrl = (user: IUser) => {
+	const { url, entities } = user;
+	const urls = entities?.url?.urls;
+	if (urls && urls?.length > 0) {
+		return urls.find(u => u.url === url)?.expanded_url;
+	}
+	return url;
 };

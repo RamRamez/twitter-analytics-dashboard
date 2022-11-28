@@ -68,9 +68,9 @@ export const fetchTweetsHourly: TFetchTweetsHourly = query => {
 	return getRequest(apiDashboardRoutes.tweetsHourly, query);
 };
 
-export function fetchUsers(): Promise<IUserList[]> {
+export const fetchUsers = (): Promise<IUserList[]> => {
 	return getRequest(apiDashboardRoutes.users);
-}
+};
 
 export const fetchSearchTweets: TFetchSearchTweets = query => {
 	return getRequest(apiDashboardRoutes.searchTweets, query);

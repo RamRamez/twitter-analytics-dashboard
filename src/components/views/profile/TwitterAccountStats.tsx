@@ -1,13 +1,13 @@
 import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { CalendarMonth } from '@mui/icons-material';
+import { CalendarMonth, Link as LinkIcon, LocationOn } from '@mui/icons-material';
 import { FlexCenter } from '../../styled-components/flex';
 import TooltipHelp from '../../TooltipHelp';
 import { IUserProps } from '../../../types/timeAndUserProps';
 import { fetchUser } from '../../../api/apiRequests';
 import { IUser } from '../../../types/user';
-import { formatAuthorLink } from '../../../lib/helpers';
+import { displayUrl, expandedUrl, formatAuthorLink } from '../../../lib/helpers';
 import { ITweet } from '../../../types/tweet';
 import { IMedia } from '../../../types/media';
 import TweetCard from '../../TweetCard';
@@ -59,8 +59,26 @@ export default function TwitterAccountStats({ user }: IUserProps) {
 					{userData?.description}
 				</Typography>
 				<JoinedDate variant='subtitle2' color='textSecondary'>
-					<CalendarMonth color='inherit' />
-					{`Joined ${userData?.created_at.split('T')[0]}`}
+					<div>
+						<CalendarMonth color='inherit' />
+						{`Joined ${userData?.created_at.split('T')[0]}`}
+					</div>
+					{userData?.location && (
+						<div>
+							<LocationOn color='inherit' />
+							{userData.location}
+						</div>
+					)}
+					{userData?.url && (
+						<a
+							target='_blank'
+							rel='noreferrer noopener'
+							href={expandedUrl(userData)!}
+						>
+							<LinkIcon color='inherit' />
+							{displayUrl(userData)}
+						</a>
+					)}
 				</JoinedDate>
 				<PublicMetrics>
 					<Typography component='div' variant='body1' color='textSecondary'>
@@ -95,8 +113,8 @@ export default function TwitterAccountStats({ user }: IUserProps) {
 }
 
 const PublicMetrics = styled.div`
+	margin-top: 20px;
 	> * {
-		margin-top: 20px;
 		display: flex;
 		flex-wrap: wrap;
 		gap: 20px;
@@ -112,7 +130,13 @@ const JoinedDate = styled(Typography)`
 	display: flex;
 	align-items: center;
 	margin-top: 20px;
-	gap: 10px;
+	gap: 20px;
+	flex-wrap: wrap;
+	> * {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
 `;
 
 const UserData = styled.div`
@@ -125,6 +149,7 @@ const ProfileImage = styled.div`
 	width: 50px;
 	height: 50px;
 	overflow: hidden;
+	margin-bottom: 20px;
 `;
 
 const tooltipCopy =

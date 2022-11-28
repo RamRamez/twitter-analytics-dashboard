@@ -1,20 +1,57 @@
 import { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+import { Button, TextField, Typography } from '@mui/material';
 import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
 import { ITweet } from '../../../types/tweet';
 import { fetchSearchTweets } from '../../../api/apiRequests';
 import { ISearchQuery } from '../../../types/query';
+import TweetsSwiper from '../../TweetsSwiper';
+import TooltipHelp from '../../TooltipHelp';
+import { FlexCenter } from '../../styled-components/flex';
 
 export default function ProfileSearch(props: ITimeAndUserProps) {
 	const { user, timeRange } = props;
 	const [tweets, setTweets] = useState<ITweet[]>();
-	console.log('ProfileSearch', tweets);
+	const [search, setSearch] = useState('');
 
 	useEffect(() => {
-		const query: ISearchQuery = { timeRange };
-		if (user) query.users = [user];
-		query.search = 'givback';
-		fetchSearchTweets(query).then(setTweets);
+		if (search) handleSearch();
 	}, [user, timeRange]);
 
-	return <>hi</>;
+	const handleSearch = () => {
+		const query: ISearchQuery = { timeRange };
+		if (user) query.users = [user];
+		if (search) query.search = search;
+		fetchSearchTweets(query).then(setTweets);
+	};
+
+	return (
+		<SearchContainer>
+			<FlexCenter>
+				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
+					Search Tweets
+				</Typography>
+				<TooltipHelp title='Search tweets text' />
+			</FlexCenter>
+			<FlexCenterStyled>
+				<TextField
+					onChange={e => setSearch(e.target.value)}
+					label='Search'
+					variant='standard'
+				/>
+				<Button onClick={handleSearch} variant='contained'>
+					Search
+				</Button>
+			</FlexCenterStyled>
+			<TweetsSwiper tweets={tweets} />
+		</SearchContainer>
+	);
 }
+
+const FlexCenterStyled = styled(FlexCenter)`
+	margin: 20px 0;
+`;
+
+const SearchContainer = styled.div`
+	margin: 50px auto;
+`;
