@@ -27,6 +27,7 @@ export const apiDashboardRoutes = {
 	searchTweets: `${apiRoutes.dashboard}/searchTweets`,
 	user: `${apiRoutes.dashboard}/user`,
 	wordsWar: `${apiRoutes.dashboard}/wordsWar`,
+	wordCloud: `${apiRoutes.dashboard}/wordCloud`,
 };
 
 export const userRoutes = {

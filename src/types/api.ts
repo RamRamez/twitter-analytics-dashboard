@@ -80,3 +80,8 @@ export interface IWordsWar {
 	word: string;
 	wordsWar: ITweetsMonthly[];
 }
+
+export interface IWordCloud {
+	word: string;
+	count: number;
+}

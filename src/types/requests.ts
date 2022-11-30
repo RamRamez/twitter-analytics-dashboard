@@ -16,6 +16,7 @@ import {
 	ITweetsSource,
 	ITweetsType,
 	IUserGeneralStats,
+	IWordCloud,
 	IWordsWar,
 } from './api';
 
@@ -53,3 +54,5 @@ export type TFetchUserGeneralStats = (
 ) => Promise<IUserGeneralStats>;
 
 export type TFetchWordsWar = (query: ISearchQuery) => Promise<IWordsWar[]>;
+
+export type TFetchWordCloud = (query: ISearchQuery) => Promise<IWordCloud[]>;

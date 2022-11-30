@@ -1,5 +1,6 @@
 import {
 	Business,
+	Cloud,
 	Equalizer,
 	FilterAlt,
 	Person,
@@ -27,17 +28,22 @@ const menuItems = [
 	{
 		label: 'Words War',
 		icon: <Spellcheck />,
-		link: routes.words,
+		link: routes.wordsWar,
 	},
 	{
-		label: 'Topics Analysis',
+		label: 'Word Cloud',
+		icon: <Cloud />,
+		link: routes.wordCloud,
+	},
+	{
+		label: 'Words Influence',
 		icon: <Topic />,
-		link: routes.topics,
+		link: routes.wordsInfluence,
 	},
 	{
-		label: 'Entities Analysis',
+		label: 'Profiles Influence',
 		icon: <Business />,
-		link: routes.entities,
+		link: routes.profilesInfluence,
 	},
 	// {
 	// 	label: 'Add Entity',

@@ -14,15 +14,6 @@ export default function WordsWarColumnChart({ wordsWar }: IProps) {
 		data: i.wordsWar.map(j => [new Date(j.date).getTime(), j.count]),
 	}));
 
-	// const x: stringx[] = [];
-	// wordsWar.forEach(i => {
-	// 	i.wordsWar.forEach(j => {
-	// 		x.push(j.date);
-	// 	});
-	// });
-	// x.sort();
-	// console.log(new Set(x));
-
 	const options = {
 		chart: {
 			type: 'column',
@@ -34,15 +25,10 @@ export default function WordsWarColumnChart({ wordsWar }: IProps) {
 		},
 		xAxis: {
 			type: 'datetime',
-			// type: 'datetime',
-			// labels: {
-			// 	formatter() {
-			// 		return Highcharts.dateFormat('%b/%e/%Y', Date.now());
-			// 	},
-			// },
 		},
 		tooltip: {
 			enabled: true,
+			headerFormat: '',
 			pointFormat: '<b>{series.name} count: {point.y}</b>',
 		},
 		series,

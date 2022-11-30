@@ -2,6 +2,7 @@ import { EToastType, gToast } from '../components/gToast';
 import { IUser } from '../types/user';
 import { ITweet, TTweetsWithMedia, TTweetWithMedia } from '../types/tweet';
 import { IMedia } from '../types/media';
+import { ISearchQuery } from '../types/query';
 
 export const showToastError = (err: any) => {
 	const errorMessage =
@@ -64,4 +65,15 @@ export const addMediaToTweets = (tweets: ITweet[], media: IMedia[]): TTweetsWith
 		}
 		return _tweet;
 	});
+};
+
+export const queryCreator = (query: ISearchQuery) => {
+	const { search, users, toDate, fromDate, tweetTypes } = query;
+	const _query: ISearchQuery = {};
+	if (users && users.length > 0) _query.users = users;
+	if (search) _query.search = search;
+	if (tweetTypes && tweetTypes.length > 0) _query.tweetTypes = tweetTypes;
+	if (fromDate) _query.fromDate = fromDate;
+	if (toDate) _query.toDate = toDate;
+	return _query;
 };

@@ -8,37 +8,31 @@ import SelectProfiles from '../../select-components/selectProfiles';
 import SelectTweetTypes from '../../select-components/selectTweetTypes';
 import SelectFromDate from '../../select-components/selectFromDate';
 import SelectToDate from '../../select-components/selectToDate';
-import { fetchWordsWar } from '../../../api/apiRequests';
-import { IWordsWar } from '../../../types/api';
-import WordsWarColumnChart from './WordsWarColumnChart';
+import { fetchWordCloud } from '../../../api/apiRequests';
+import { IWordCloud } from '../../../types/api';
 import { queryCreator } from '../../../lib/helpers';
+import WordCloudChart from '../wordCloud/WordCloudChart';
 
-export default function WordsWarIndex() {
+export default function WordsInfluenceIndex() {
 	const [users, setUsers] = useState<string[]>([]);
 	const [tweetTypes, setTweetTypes] = useState<TTweetTypes[]>([]);
 	const [fromDate, setFromDate] = useState<Date | null>(null);
 	const [toDate, setToDate] = useState<Date | null>(null);
 	const [search, setSearch] = useState<string>('');
-	const [wordsWar, setWordsWar] = useState<IWordsWar[]>();
-	const [hasError, setHasError] = useState(false);
+	const [wordsInfluence, setWordsInfluence] = useState<IWordCloud[]>();
 
 	const handleSearch = () => {
-		if (!search) {
-			setHasError(true);
-		} else {
-			setHasError(false);
-			const query = queryCreator({ users, tweetTypes, fromDate, toDate, search });
-			fetchWordsWar(query).then(setWordsWar);
-		}
+		const query = queryCreator({ users, tweetTypes, fromDate, toDate, search });
+		fetchWordCloud(query).then(setWordsInfluence);
 	};
 
 	return (
 		<Container sx={{ my: 15 }}>
 			<FlexCenter>
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
-					Words War
+					Words Influence
 				</Typography>
-				<TooltipHelp title='Comparison of words usage abundance per month. Comparison is regarding to search terms.' />
+				<TooltipHelp title='Word Influence shows average retweet count for filtered tweets. The retweet count for a retweet belongs to the original tweet, so to have valid retweet average for a profile, you should exclude retweets.' />
 			</FlexCenter>
 			<SelectProfiles multiple selectedUsers={users} setSelectedUsers={setUsers} />
 			<SelectTweetTypes
@@ -50,21 +44,18 @@ export default function WordsWarIndex() {
 			<SearchContainer>
 				<TextField
 					onChange={e => setSearch(e.target.value)}
-					label='Search terms'
-					required
+					label='Search'
 					variant='outlined'
 					sx={{ width: '100%' }}
-					error={hasError}
-					helperText={hasError ? 'This field is required!' : ''}
 				/>
-				<TooltipHelp title='Search terms compares words usage abundance. Separate words with comma (,)' />
+				<TooltipHelp title='Search inside tweets text to limit words influence tweets range.' />
 			</SearchContainer>
 			<Box sx={{ width: 320, mx: 'auto' }}>
 				<Button size='large' onClick={handleSearch} variant='contained'>
 					Search
 				</Button>
 			</Box>
-			{wordsWar && <WordsWarColumnChart wordsWar={wordsWar} />}
+			{wordsInfluence && <WordCloudChart wordCloud={wordsInfluence} />}
 		</Container>
 	);
 }

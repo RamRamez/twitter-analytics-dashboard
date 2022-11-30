@@ -13,6 +13,7 @@ import {
 	TFetchTweetsTypes,
 	TFetchUser,
 	TFetchUserGeneralStats,
+	TFetchWordCloud,
 	TFetchWordsWar,
 } from '../types/requests';
 
@@ -90,4 +91,8 @@ export const fetchUserGeneralStats: TFetchUserGeneralStats = (username, query) =
 
 export const fetchWordsWar: TFetchWordsWar = query => {
 	return getRequest(apiDashboardRoutes.wordsWar, query);
+};
+
+export const fetchWordCloud: TFetchWordCloud = query => {
+	return getRequest(apiDashboardRoutes.wordCloud, query);
 };
