@@ -26,6 +26,7 @@ export const apiDashboardRoutes = {
 	users: `${apiRoutes.dashboard}/users`,
 	searchTweets: `${apiRoutes.dashboard}/searchTweets`,
 	user: `${apiRoutes.dashboard}/user`,
+	wordsWar: `${apiRoutes.dashboard}/wordsWar`,
 };
 
 export const userRoutes = {

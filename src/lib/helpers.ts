@@ -1,5 +1,7 @@
 import { EToastType, gToast } from '../components/gToast';
 import { IUser } from '../types/user';
+import { ITweet, TTweetsWithMedia, TTweetWithMedia } from '../types/tweet';
+import { IMedia } from '../types/media';
 
 export const showToastError = (err: any) => {
 	const errorMessage =
@@ -44,4 +46,22 @@ export const expandedUrl = (user: IUser) => {
 		return urls.find(u => u.url === url)?.expanded_url;
 	}
 	return url;
+};
+
+export const addMediaToTweets = (tweets: ITweet[], media: IMedia[]): TTweetsWithMedia => {
+	return tweets.map(tweet => {
+		const _tweet: TTweetWithMedia = { ...tweet };
+		const mediaKeys = _tweet.attachments?.media_keys;
+		if (mediaKeys) {
+			const _media: IMedia[] = [];
+			mediaKeys.forEach(key => {
+				const foundMedia = media.find(m => m.media_key === key);
+				if (foundMedia) _media.push(foundMedia);
+			});
+			if (_media.length > 0) {
+				_tweet.media = _media;
+			}
+		}
+		return _tweet;
+	});
 };

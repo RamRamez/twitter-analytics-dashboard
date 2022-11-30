@@ -8,13 +8,12 @@ import { IUserProps } from '../../../types/timeAndUserProps';
 import { fetchUser } from '../../../api/apiRequests';
 import { IUser } from '../../../types/user';
 import { displayUrl, expandedUrl, formatAuthorLink } from '../../../lib/helpers';
-import { ITweet } from '../../../types/tweet';
-import { IMedia } from '../../../types/media';
+import { TTweetWithMedia } from '../../../types/tweet';
 import TweetCard from '../../TweetCard';
 
 export default function TwitterAccountStats({ user }: IUserProps) {
 	const [userData, setUserData] = useState<IUser>();
-	const [pinnedTweet, setPinnedTweet] = useState<ITweet & { media?: IMedia[] }>();
+	const [pinnedTweet, setPinnedTweet] = useState<TTweetWithMedia>();
 
 	useEffect(() => {
 		fetchUser(user!).then(res => {

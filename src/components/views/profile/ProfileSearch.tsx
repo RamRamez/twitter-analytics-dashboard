@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Button, TextField, Typography } from '@mui/material';
 import { ITimeAndUserProps } from '../../../types/timeAndUserProps';
-import { ITweet } from '../../../types/tweet';
+import { TTweetWithMedia } from '../../../types/tweet';
 import { fetchSearchTweets } from '../../../api/apiRequests';
 import { ISearchQuery } from '../../../types/query';
 import TweetsSwiper from '../../TweetsSwiper';
 import TooltipHelp from '../../TooltipHelp';
 import { FlexCenter } from '../../styled-components/flex';
+import { addMediaToTweets } from '../../../lib/helpers';
 
 export default function ProfileSearch(props: ITimeAndUserProps) {
 	const { user, timeRange } = props;
-	const [tweets, setTweets] = useState<ITweet[]>();
+	const [tweets, setTweets] = useState<TTweetWithMedia[]>();
 	const [search, setSearch] = useState('');
 
 	useEffect(() => {
@@ -22,7 +23,10 @@ export default function ProfileSearch(props: ITimeAndUserProps) {
 		const query: ISearchQuery = { timeRange };
 		if (user) query.users = [user];
 		if (search) query.search = search;
-		fetchSearchTweets(query).then(setTweets);
+		fetchSearchTweets(query).then(res => {
+			const tweetsWithMedia = addMediaToTweets(res.tweets, res.media);
+			setTweets(tweetsWithMedia);
+		});
 	};
 
 	return (

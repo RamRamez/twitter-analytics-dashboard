@@ -8,6 +8,7 @@ import {
 	IFetchUser,
 	IHashtagAbundance,
 	IInfluentialTweets,
+	ISearchResults,
 	ISocialNetwork,
 	ITweetsHourly,
 	ITweetsLanguages,
@@ -15,8 +16,8 @@ import {
 	ITweetsSource,
 	ITweetsType,
 	IUserGeneralStats,
+	IWordsWar,
 } from './api';
-import { ITweet } from './tweet';
 
 export type TFetchHashtagsAbundance = (
 	query: ITimeAndUserQuery,
@@ -42,7 +43,7 @@ export type TFetchTweetsMonthly = (query: ITimeAndUserQuery) => Promise<ITweetsM
 
 export type TFetchTweetsHourly = (query: ITimeAndUserQuery) => Promise<ITweetsHourly[]>;
 
-export type TFetchSearchTweets = (query: ISearchQuery) => Promise<ITweet[]>;
+export type TFetchSearchTweets = (query: ISearchQuery) => Promise<ISearchResults>;
 
 export type TFetchUser = (username: string) => Promise<IFetchUser>;
 
@@ -50,3 +51,5 @@ export type TFetchUserGeneralStats = (
 	username: string,
 	query: ITimeAndUserQuery,
 ) => Promise<IUserGeneralStats>;
+
+export type TFetchWordsWar = (query: ISearchQuery) => Promise<IWordsWar[]>;

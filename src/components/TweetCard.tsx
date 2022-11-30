@@ -1,18 +1,17 @@
 import { colors, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { PlayCircleOutline, PushPin, Visibility } from '@mui/icons-material';
-import { ITweet } from '../types/tweet';
+import { TTweetWithMedia } from '../types/tweet';
 import { formatAuthorLink, formatDate, formatTweetLink } from '../lib/helpers';
 import RetweetIcon from '../assets/images/retweet.svg';
 import ReplyIcon from '../assets/images/reply.svg';
 import HeartIcon from '../assets/images/heart.svg';
 import QuoteIcon from '../assets/images/quote.svg';
 import { EReferencedTweetsType } from '../types/referencedTweetsType';
-import { IMedia } from '../types/media';
 import TooltipHelp from './TooltipHelp';
 
 interface IProps {
-	tweet: ITweet & { media?: IMedia[] };
+	tweet: TTweetWithMedia;
 	pinned?: boolean;
 }
 

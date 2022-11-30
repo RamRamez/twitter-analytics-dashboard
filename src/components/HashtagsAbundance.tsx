@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { ITimeAndUserProps } from '../../types/timeAndUserProps';
-import { fetchHashtagsAbundance } from '../../api/apiRequests';
-import { IHashtagAbundance } from '../../types/api';
-import { ITimeAndUserQuery } from '../../types/query';
+import { ITimeAndUserProps } from '../types/timeAndUserProps';
+import { fetchHashtagsAbundance } from '../api/apiRequests';
+import { IHashtagAbundance } from '../types/api';
+import { ITimeAndUserQuery } from '../types/query';
 
 function HashtagsAbundance(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;

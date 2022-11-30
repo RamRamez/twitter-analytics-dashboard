@@ -3,17 +3,17 @@ import { useState } from 'react';
 import { ETimeRange } from '../../../types/timeAndUserProps';
 import TimeRangeMenu from '../../TimeRangeMenu';
 import TwitterAccountStats from './TwitterAccountStats';
-import ProfileSelect from './ProfileSelect';
-import HashtagsAbundance from '../HashtagsAbundance';
-import InfluentialTweets from '../InfluentialTweets';
-import SocialNetwork from '../SocialNetwork';
-import TweetsTypes from '../TweetsTypes';
-import TweetsLanguage from '../TweetsLanguage';
-import TweetsSource from '../TweetsSource';
-import TweetsMonthly from '../TweetsMonthly';
-import TweetsHourly from '../TweetsHourly';
+import HashtagsAbundance from '../../HashtagsAbundance';
+import InfluentialTweets from '../../InfluentialTweets';
+import SocialNetwork from '../../SocialNetwork';
+import TweetsTypes from '../../TweetsTypes';
+import TweetsLanguage from '../../TweetsLanguage';
+import TweetsSource from '../../TweetsSource';
+import TweetsMonthly from '../../TweetsMonthly';
+import TweetsHourly from '../../TweetsHourly';
 import ProfileGeneralStats from './ProfileGeneralStats';
 import ProfileSearch from './ProfileSearch';
+import SelectProfiles from '../../select-components/selectProfiles';
 
 export default function ProfileIndex() {
 	const [timeRange, setTimeRange] = useState(ETimeRange.all);
@@ -21,7 +21,7 @@ export default function ProfileIndex() {
 
 	return (
 		<Container sx={{ my: 15 }}>
-			<ProfileSelect user={user} setUser={setUser} />
+			<SelectProfiles selectedUsers={user} setSelectedUsers={setUser} />
 			{user && (
 				<>
 					<TimeRangeMenu timeRange={timeRange} setTimeRange={setTimeRange} />

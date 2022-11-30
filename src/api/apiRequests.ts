@@ -13,6 +13,7 @@ import {
 	TFetchTweetsTypes,
 	TFetchUser,
 	TFetchUserGeneralStats,
+	TFetchWordsWar,
 } from '../types/requests';
 
 interface IApiSignIn {
@@ -85,4 +86,8 @@ export const fetchUserGeneralStats: TFetchUserGeneralStats = (username, query) =
 		`${apiDashboardRoutes.user}/${username}${userRoutes.general}`,
 		query,
 	);
+};
+
+export const fetchWordsWar: TFetchWordsWar = query => {
+	return getRequest(apiDashboardRoutes.wordsWar, query);
 };

@@ -1,13 +1,9 @@
 import {
-	Add,
 	Business,
 	Equalizer,
 	FilterAlt,
 	Person,
-	RemoveRedEye,
-	Search,
 	Spellcheck,
-	SystemUpdateAlt,
 	Topic,
 } from '@mui/icons-material';
 import routes from '../../application/routes';
@@ -29,7 +25,7 @@ const menuItems = [
 		link: routes.filters,
 	},
 	{
-		label: 'Words Analysis',
+		label: 'Words War',
 		icon: <Spellcheck />,
 		link: routes.words,
 	},
@@ -43,26 +39,26 @@ const menuItems = [
 		icon: <Business />,
 		link: routes.entities,
 	},
-	{
-		label: 'Add Entity',
-		icon: <Add />,
-		link: routes.add,
-	},
-	{
-		label: 'Update Entity',
-		icon: <SystemUpdateAlt />,
-		link: routes.update,
-	},
-	{
-		label: 'Search Twitter',
-		icon: <Search />,
-		link: routes.search,
-	},
-	{
-		label: 'View Operations',
-		icon: <RemoveRedEye />,
-		link: routes.operations,
-	},
+	// {
+	// 	label: 'Add Entity',
+	// 	icon: <Add />,
+	// 	link: routes.add,
+	// },
+	// {
+	// 	label: 'Update Entity',
+	// 	icon: <SystemUpdateAlt />,
+	// 	link: routes.update,
+	// },
+	// {
+	// 	label: 'Search Twitter',
+	// 	icon: <Search />,
+	// 	link: routes.search,
+	// },
+	// {
+	// 	label: 'View Operations',
+	// 	icon: <RemoveRedEye />,
+	// 	link: routes.operations,
+	// },
 ];
 
 export default menuItems;

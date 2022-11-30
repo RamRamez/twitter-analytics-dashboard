@@ -8,17 +8,15 @@ import {
 } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { fetchInfluentialTweets } from '../../api/apiRequests';
-import { EPublicMetrics } from '../../types/publicMetrics';
-import { ITweet } from '../../types/tweet';
-import { ITimeAndUserProps } from '../../types/timeAndUserProps';
-import TweetsSwiper from '../TweetsSwiper';
-import { IMedia } from '../../types/media';
-import { FlexCenter } from '../styled-components/flex';
-import { IInfluentialTweetsQuery } from '../../types/query';
-import TooltipHelp from '../TooltipHelp';
-
-export type TTweetsWithMedia = (ITweet & { media?: IMedia[] })[];
+import { fetchInfluentialTweets } from '../api/apiRequests';
+import { EPublicMetrics } from '../types/publicMetrics';
+import { TTweetsWithMedia } from '../types/tweet';
+import { ITimeAndUserProps } from '../types/timeAndUserProps';
+import TweetsSwiper from './TweetsSwiper';
+import { FlexCenter } from './styled-components/flex';
+import { IInfluentialTweetsQuery } from '../types/query';
+import TooltipHelp from './TooltipHelp';
+import { addMediaToTweets } from '../lib/helpers';
 
 function InfluentialTweets(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;
@@ -29,22 +27,8 @@ function InfluentialTweets(props: ITimeAndUserProps) {
 		const query: IInfluentialTweetsQuery = { timeRange, sortBy };
 		if (user) query.users = [user];
 		fetchInfluentialTweets(query).then(res => {
-			const _influentialTweets: TTweetsWithMedia = res.influentialTweets;
-			_influentialTweets.map(tweet => {
-				const mediaKeys = tweet.attachments?.media_keys;
-				if (mediaKeys) {
-					const _media: IMedia[] = [];
-					mediaKeys.forEach(key => {
-						const foundMedia = res.media.find(m => m.media_key === key);
-						if (foundMedia) _media.push(foundMedia);
-					});
-					if (_media.length > 0) {
-						tweet.media = _media;
-					}
-				}
-				return tweet;
-			});
-			setInfluentialTweets(_influentialTweets);
+			const tweetsWithMedia = addMediaToTweets(res.influentialTweets, res.media);
+			setInfluentialTweets(tweetsWithMedia);
 		});
 	}, [sortBy, timeRange, user]);
 

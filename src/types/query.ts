@@ -1,9 +1,10 @@
 import { ETimeRange } from './timeAndUserProps';
 import { EPublicMetrics } from './publicMetrics';
-import { EReferencedTweetsType } from './referencedTweetsType';
+import { EReferencedTweetsType, TTweetTypes } from './referencedTweetsType';
+import { ESortByDate } from './sortBy';
 
 interface ITimeRangeQuery {
-	timeRange: ETimeRange;
+	timeRange?: ETimeRange;
 }
 
 interface IUsersQuery {
@@ -22,4 +23,8 @@ export interface ISocialNetworkQuery extends ITimeAndUserQuery {
 
 export interface ISearchQuery extends ITimeAndUserQuery {
 	search?: string;
+	tweetTypes?: TTweetTypes[];
+	sortBy?: ESortByDate | EPublicMetrics | '';
+	fromDate?: Date | null;
+	toDate?: Date | null;
 }

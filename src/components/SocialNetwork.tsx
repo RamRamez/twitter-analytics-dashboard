@@ -8,13 +8,13 @@ import {
 } from '@mui/material';
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
-import { FlexCenter } from '../styled-components/flex';
-import { fetchSocialNetwork } from '../../api/apiRequests';
-import { ISocialNetwork } from '../../types/api';
-import { EReferencedTweetsType } from '../../types/referencedTweetsType';
-import { ITimeAndUserProps } from '../../types/timeAndUserProps';
-import { ISocialNetworkQuery } from '../../types/query';
-import TooltipHelp from '../TooltipHelp';
+import { FlexCenter } from './styled-components/flex';
+import { fetchSocialNetwork } from '../api/apiRequests';
+import { ISocialNetwork } from '../types/api';
+import { EReferencedTweetsType } from '../types/referencedTweetsType';
+import { ITimeAndUserProps } from '../types/timeAndUserProps';
+import { ISocialNetworkQuery } from '../types/query';
+import TooltipHelp from './TooltipHelp';
 
 function SocialNetwork(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;

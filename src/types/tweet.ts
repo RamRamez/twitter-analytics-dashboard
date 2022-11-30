@@ -1,4 +1,5 @@
 import { EReferencedTweetsType } from './referencedTweetsType';
+import { IMedia } from './media';
 
 export interface ITweetAnnotation {
 	start: number;
@@ -101,3 +102,7 @@ export interface ITweet {
 	source: string;
 	text: string;
 }
+
+export type TTweetWithMedia = ITweet & { media?: IMedia[] };
+
+export type TTweetsWithMedia = TTweetWithMedia[];

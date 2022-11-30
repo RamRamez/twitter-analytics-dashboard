@@ -70,3 +70,13 @@ export interface IUserGeneralStats {
 		quoteAvg: number;
 	};
 }
+
+export interface ISearchResults {
+	tweets: ITweet[];
+	media: IMedia[];
+}
+
+export interface IWordsWar {
+	word: string;
+	wordsWar: ITweetsMonthly[];
+}

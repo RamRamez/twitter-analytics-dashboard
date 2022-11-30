@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import { useEffect, useState } from 'react';
-import { ITweetsSource } from '../../types/api';
-import { fetchTweetsSource } from '../../api/apiRequests';
-import { ITimeAndUserProps } from '../../types/timeAndUserProps';
-import { ITimeAndUserQuery } from '../../types/query';
+import { ITweetsSource } from '../types/api';
+import { fetchTweetsSource } from '../api/apiRequests';
+import { ITimeAndUserProps } from '../types/timeAndUserProps';
+import { ITimeAndUserQuery } from '../types/query';
 
 function TweetsSource(props: ITimeAndUserProps) {
 	const { timeRange, user } = props;
