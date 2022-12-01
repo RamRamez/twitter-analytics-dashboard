@@ -4,10 +4,10 @@ import styled from '@emotion/styled';
 import { TTweetTypes } from '../../../types/referencedTweetsType';
 import { FlexCenter } from '../../styled-components/flex';
 import TooltipHelp from '../../TooltipHelp';
-import SelectProfiles from '../../select-components/selectProfiles';
-import SelectTweetTypes from '../../select-components/selectTweetTypes';
-import SelectFromDate from '../../select-components/selectFromDate';
-import SelectToDate from '../../select-components/selectToDate';
+import SelectProfiles from '../../select-components/SelectProfiles';
+import SelectTweetTypes from '../../select-components/SelectTweetTypes';
+import SelectFromDate from '../../select-components/SelectFromDate';
+import SelectToDate from '../../select-components/SelectToDate';
 import { fetchWordsWar } from '../../../api/apiRequests';
 import { IWordsWar } from '../../../types/api';
 import WordsWarColumnChart from './WordsWarColumnChart';
@@ -38,7 +38,7 @@ export default function WordsWarIndex() {
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 					Words War
 				</Typography>
-				<TooltipHelp title='Comparison of words usage abundance per month. Comparison is regarding to search terms.' />
+				<TooltipHelp title='Comparison of words occurrences per month. Comparison is regarding to search terms.' />
 			</FlexCenter>
 			<SelectProfiles multiple selectedUsers={users} setSelectedUsers={setUsers} />
 			<SelectTweetTypes
@@ -57,7 +57,7 @@ export default function WordsWarIndex() {
 					error={hasError}
 					helperText={hasError ? 'This field is required!' : ''}
 				/>
-				<TooltipHelp title='Search terms compares words usage abundance. Separate words with comma (,)' />
+				<TooltipHelp title='Search terms compares words occurrences. Separate words with comma (,)' />
 			</SearchContainer>
 			<Box sx={{ width: 320, mx: 'auto' }}>
 				<Button size='large' onClick={handleSearch} variant='contained'>

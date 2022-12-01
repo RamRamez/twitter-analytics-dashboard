@@ -3,11 +3,14 @@ import {
 	ISearchQuery,
 	ISocialNetworkQuery,
 	ITimeAndUserQuery,
+	ITimeRangeQuery,
 } from './query';
 import {
 	IFetchUser,
+	IGeneralStats,
 	IHashtagAbundance,
 	IInfluentialTweets,
+	IProfilesInfluence,
 	ISearchResults,
 	ISocialNetwork,
 	ITweetsHourly,
@@ -17,8 +20,11 @@ import {
 	ITweetsType,
 	IUserGeneralStats,
 	IWordCloud,
+	IWordsInfluence,
 	IWordsWar,
 } from './api';
+
+export type TFetchGeneralStats = (query: ITimeRangeQuery) => Promise<IGeneralStats>;
 
 export type TFetchHashtagsAbundance = (
 	query: ITimeAndUserQuery,
@@ -56,3 +62,9 @@ export type TFetchUserGeneralStats = (
 export type TFetchWordsWar = (query: ISearchQuery) => Promise<IWordsWar[]>;
 
 export type TFetchWordCloud = (query: ISearchQuery) => Promise<IWordCloud[]>;
+
+export type TFetchWordsInfluence = (query: ISearchQuery) => Promise<IWordsInfluence[]>;
+
+export type TFetchProfilesInfluence = (
+	query: ISearchQuery,
+) => Promise<IProfilesInfluence[]>;

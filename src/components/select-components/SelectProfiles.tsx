@@ -1,15 +1,27 @@
-import { Box, Chip, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import {
+	Box,
+	Chip,
+	FormControl,
+	FormHelperText,
+	InputLabel,
+	MenuItem,
+	Select,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { fetchUsers } from '../../api/apiRequests';
 import { IUserList } from '../../types/api';
 
-interface ISelectProfilesProps {
+interface IProps {
+	error?: boolean;
+}
+
+interface ISelectProfilesProps extends IProps {
 	selectedUsers: string[];
 	setSelectedUsers: (users: string[]) => void;
 	multiple: true;
 }
 
-interface ISelectProfileProps {
+interface ISelectProfileProps extends IProps {
 	selectedUsers: string;
 	setSelectedUsers: (user: string) => void;
 	multiple?: false;
@@ -18,7 +30,7 @@ interface ISelectProfileProps {
 type TSelectProfileProps = ISelectProfilesProps | ISelectProfileProps;
 
 export default function SelectProfiles(props: TSelectProfileProps) {
-	const { selectedUsers, setSelectedUsers, multiple } = props;
+	const { selectedUsers, setSelectedUsers, multiple, error } = props;
 	const [users, setUsers] = useState<IUserList[]>();
 
 	useEffect(() => {
@@ -27,7 +39,7 @@ export default function SelectProfiles(props: TSelectProfileProps) {
 
 	return (
 		<Box sx={{ width: 320, mx: 'auto', mt: 5 }}>
-			<FormControl fullWidth>
+			<FormControl fullWidth error={error}>
 				<InputLabel>Select Profile{multiple ? 's' : ''}</InputLabel>
 				<Select
 					value={selectedUsers}
@@ -50,6 +62,7 @@ export default function SelectProfiles(props: TSelectProfileProps) {
 						</MenuItem>
 					))}
 				</Select>
+				{error && <FormHelperText>This field is required</FormHelperText>}
 			</FormControl>
 		</Box>
 	);

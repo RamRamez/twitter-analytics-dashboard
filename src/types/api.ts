@@ -85,3 +85,19 @@ export interface IWordCloud {
 	word: string;
 	count: number;
 }
+
+export interface IWordsInfluence {
+	word: string;
+	wordsInfluence: {
+		retweetAverage: number;
+		date: string;
+	}[];
+}
+
+export interface IProfilesInfluence {
+	profile: string;
+	profilesInfluence: {
+		retweetAverage: number;
+		date: string;
+	}[];
+}

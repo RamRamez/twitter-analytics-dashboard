@@ -21,10 +21,10 @@ import { TTweetWithMedia } from '../../types/tweet';
 import TweetsSwiper from '../TweetsSwiper';
 import { ISearchQuery } from '../../types/query';
 import { addMediaToTweets } from '../../lib/helpers';
-import SelectProfiles from '../select-components/selectProfiles';
-import SelectTweetTypes from '../select-components/selectTweetTypes';
-import SelectFromDate from '../select-components/selectFromDate';
-import SelectToDate from '../select-components/selectToDate';
+import SelectProfiles from '../select-components/SelectProfiles';
+import SelectTweetTypes from '../select-components/SelectTweetTypes';
+import SelectFromDate from '../select-components/SelectFromDate';
+import SelectToDate from '../select-components/SelectToDate';
 
 export default function Filters() {
 	const [selectedUsers, setSelectedUsers] = useState<string[]>([]);

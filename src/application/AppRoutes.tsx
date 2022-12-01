@@ -8,6 +8,7 @@ import Filters from '../components/views/Filters';
 import WordsWarIndex from '../components/views/wordsWar/WordsWar.index';
 import WordCloudIndex from '../components/views/wordCloud/WordCloud.index';
 import WordsInfluenceIndex from '../components/views/wordsInfluence/WordsInfluence.index';
+import ProfilesInfluenceIndex from '../components/views/ProfilesInfluence/ProfilesInfluence.index';
 
 function AppRoutes() {
 	return (
@@ -18,6 +19,7 @@ function AppRoutes() {
 			<Route path={routes.wordsWar} element={<WordsWarIndex />} />
 			<Route path={routes.wordCloud} element={<WordCloudIndex />} />
 			<Route path={routes.wordsInfluence} element={<WordsInfluenceIndex />} />
+			<Route path={routes.profilesInfluence} element={<ProfilesInfluenceIndex />} />
 			<Route path={routes.admin} element={<AdminIndex />} />
 			<Route path='*' element={<NotFound />} />
 		</Routes>

@@ -2,16 +2,19 @@ import { Typography } from '@mui/material';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from 'highcharts';
 import styled from '@emotion/styled';
-import { IWordsWar } from '../../../types/api';
+import { IWordsInfluence } from '../../../types/api';
 
 interface IProps {
-	wordsWar: IWordsWar[];
+	wordsInfluence: IWordsInfluence[];
 }
 
-export default function WordsWarColumnChart({ wordsWar }: IProps) {
-	const series = wordsWar.map(i => ({
+export default function WordsInfluenceChart({ wordsInfluence }: IProps) {
+	const series = wordsInfluence.map(i => ({
 		name: i.word,
-		data: i.wordsWar.map(j => [new Date(j.date).getTime(), j.count]),
+		data: i.wordsInfluence.map(j => [
+			new Date(j.date).getTime(),
+			Math.round(j.retweetAverage),
+		]),
 	}));
 
 	const options = {
@@ -29,7 +32,7 @@ export default function WordsWarColumnChart({ wordsWar }: IProps) {
 		tooltip: {
 			enabled: true,
 			headerFormat: '',
-			pointFormat: '<b>{series.name} occurrences: {point.y}</b>',
+			pointFormat: '<b>{series.name} retweet avg: {point.y}</b>',
 		},
 		series,
 	};
@@ -40,7 +43,7 @@ export default function WordsWarColumnChart({ wordsWar }: IProps) {
 				sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
 				variant='h5'
 			>
-				Words Occurrences Monthly
+				Retweet Average Monthly
 			</Typography>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</Wrapper>

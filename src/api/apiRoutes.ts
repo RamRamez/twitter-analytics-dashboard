@@ -28,6 +28,8 @@ export const apiDashboardRoutes = {
 	user: `${apiRoutes.dashboard}/user`,
 	wordsWar: `${apiRoutes.dashboard}/wordsWar`,
 	wordCloud: `${apiRoutes.dashboard}/wordCloud`,
+	wordsInfluence: `${apiRoutes.dashboard}/wordsInfluence`,
+	profilesInfluence: `${apiRoutes.dashboard}/profilesInfluence`,
 };
 
 export const userRoutes = {

@@ -13,7 +13,7 @@ import TweetsMonthly from '../../TweetsMonthly';
 import TweetsHourly from '../../TweetsHourly';
 import ProfileGeneralStats from './ProfileGeneralStats';
 import ProfileSearch from './ProfileSearch';
-import SelectProfiles from '../../select-components/selectProfiles';
+import SelectProfiles from '../../select-components/SelectProfiles';
 
 export default function ProfileIndex() {
 	const [timeRange, setTimeRange] = useState(ETimeRange.all);

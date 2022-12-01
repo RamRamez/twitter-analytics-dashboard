@@ -3,7 +3,7 @@ import { EPublicMetrics } from './publicMetrics';
 import { EReferencedTweetsType, TTweetTypes } from './referencedTweetsType';
 import { ESortByDate } from './sortBy';
 
-interface ITimeRangeQuery {
+export interface ITimeRangeQuery {
 	timeRange?: ETimeRange;
 }
 

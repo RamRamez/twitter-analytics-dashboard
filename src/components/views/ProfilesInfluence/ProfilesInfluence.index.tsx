@@ -12,10 +12,10 @@ import SelectProfiles from '../../select-components/SelectProfiles';
 import SelectTweetTypes from '../../select-components/SelectTweetTypes';
 import SelectFromDate from '../../select-components/SelectFromDate';
 import SelectToDate from '../../select-components/SelectToDate';
-import { fetchWordsInfluence } from '../../../api/apiRequests';
-import { IWordsInfluence } from '../../../types/api';
+import { fetchProfilesInfluence } from '../../../api/apiRequests';
+import { IProfilesInfluence } from '../../../types/api';
 import { queryCreator } from '../../../lib/helpers';
-import WordsInfluenceChart from './WordsInfluenceChart';
+import ProfilesInfluenceChart from './ProfilesInfluenceChart';
 
 const defaultTweetTypes = [
 	TTweetOnly.tweet,
@@ -23,22 +23,22 @@ const defaultTweetTypes = [
 	EReferencedTweetsType.replied_to,
 ];
 
-export default function WordsInfluenceIndex() {
+export default function ProfilesInfluenceIndex() {
 	const [users, setUsers] = useState<string[]>([]);
 	const [tweetTypes, setTweetTypes] = useState<TTweetTypes[]>(defaultTweetTypes);
 	const [fromDate, setFromDate] = useState<Date | null>(null);
 	const [toDate, setToDate] = useState<Date | null>(null);
 	const [search, setSearch] = useState<string>('');
-	const [wordsInfluence, setWordsInfluence] = useState<IWordsInfluence[]>();
+	const [profilesInfluence, setProfilesInfluence] = useState<IProfilesInfluence[]>();
 	const [hasError, setHasError] = useState(false);
 
 	const handleSearch = () => {
-		if (!search) {
+		if (users.length === 0) {
 			setHasError(true);
 		} else {
 			setHasError(false);
 			const query = queryCreator({ users, tweetTypes, fromDate, toDate, search });
-			fetchWordsInfluence(query).then(setWordsInfluence);
+			fetchProfilesInfluence(query).then(setProfilesInfluence);
 		}
 	};
 
@@ -46,11 +46,16 @@ export default function WordsInfluenceIndex() {
 		<Container sx={{ my: 15 }}>
 			<FlexCenter>
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
-					Words Influence
+					Profiles Influence
 				</Typography>
-				<TooltipHelp title='Words Influence shows average retweet count of filtered tweets for each search term. The retweet count for a retweet belongs to the original tweet, so to have valid retweet average for a profile, you should exclude retweets. Influence of different words can be compared via search terms' />
+				<TooltipHelp title='Profiles Influence shows average retweet count of filtered tweets for each selected profile. The retweet count for a retweet belongs to the original tweet, so to have valid retweet average for a profile, you should exclude retweets. Influence of different profiles can be compared via select profiles' />
 			</FlexCenter>
-			<SelectProfiles multiple selectedUsers={users} setSelectedUsers={setUsers} />
+			<SelectProfiles
+				error={hasError}
+				multiple
+				selectedUsers={users}
+				setSelectedUsers={setUsers}
+			/>
 			<SelectTweetTypes
 				selectedTweetTypes={tweetTypes}
 				setSelectedTweetTypes={setTweetTypes}
@@ -60,21 +65,20 @@ export default function WordsInfluenceIndex() {
 			<SearchContainer>
 				<TextField
 					onChange={e => setSearch(e.target.value)}
-					label='Search terms'
-					required
+					label='Search'
 					variant='outlined'
 					sx={{ width: '100%' }}
-					error={hasError}
-					helperText={hasError ? 'This field is required!' : ''}
 				/>
-				<TooltipHelp title='Search terms compares words influence. Separate words with comma (,)' />
+				<TooltipHelp title='Search in tweets text to filter selected tweets' />
 			</SearchContainer>
 			<Box sx={{ width: 320, mx: 'auto' }}>
 				<Button size='large' onClick={handleSearch} variant='contained'>
 					Search
 				</Button>
 			</Box>
-			{wordsInfluence && <WordsInfluenceChart wordsInfluence={wordsInfluence} />}
+			{profilesInfluence && (
+				<ProfilesInfluenceChart profilesInfluence={profilesInfluence} />
+			)}
 		</Container>
 	);
 }

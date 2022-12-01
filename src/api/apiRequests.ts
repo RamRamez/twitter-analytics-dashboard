@@ -1,9 +1,11 @@
 import { apiDashboardRoutes, apiRoutes, userRoutes } from './apiRoutes';
 import { getRequest, postRequest } from '../lib/requests';
-import { IGeneralStats, IUserList } from '../types/api';
+import { IUserList } from '../types/api';
 import {
+	TFetchGeneralStats,
 	TFetchHashtagsAbundance,
 	TFetchInfluentialTweets,
+	TFetchProfilesInfluence,
 	TFetchSearchTweets,
 	TFetchSocialNetwork,
 	TFetchTweetsHourly,
@@ -14,6 +16,7 @@ import {
 	TFetchUser,
 	TFetchUserGeneralStats,
 	TFetchWordCloud,
+	TFetchWordsInfluence,
 	TFetchWordsWar,
 } from '../types/requests';
 
@@ -34,9 +37,9 @@ export function apiSignOut() {
 	return getRequest(apiRoutes.logout);
 }
 
-export function fetchGeneralStats(query?: {}): Promise<IGeneralStats> {
+export const fetchGeneralStats: TFetchGeneralStats = query => {
 	return getRequest(apiDashboardRoutes.general, query);
-}
+};
 
 export const fetchHashtagsAbundance: TFetchHashtagsAbundance = query => {
 	return getRequest(apiDashboardRoutes.hashtagsAbundance, query);
@@ -95,4 +98,12 @@ export const fetchWordsWar: TFetchWordsWar = query => {
 
 export const fetchWordCloud: TFetchWordCloud = query => {
 	return getRequest(apiDashboardRoutes.wordCloud, query);
+};
+
+export const fetchWordsInfluence: TFetchWordsInfluence = query => {
+	return getRequest(apiDashboardRoutes.wordsInfluence, query);
+};
+
+export const fetchProfilesInfluence: TFetchProfilesInfluence = query => {
+	return getRequest(apiDashboardRoutes.profilesInfluence, query);
 };

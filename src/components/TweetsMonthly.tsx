@@ -51,7 +51,7 @@ function TweetsMonthly(props: ITimeAndUserProps) {
 				sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
 				variant='h5'
 			>
-				Tweets Abundance Monthly
+				Tweets Created Monthly
 			</Typography>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</Wrapper>

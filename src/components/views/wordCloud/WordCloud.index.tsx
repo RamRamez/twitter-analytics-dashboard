@@ -4,10 +4,10 @@ import styled from '@emotion/styled';
 import { TTweetTypes } from '../../../types/referencedTweetsType';
 import { FlexCenter } from '../../styled-components/flex';
 import TooltipHelp from '../../TooltipHelp';
-import SelectProfiles from '../../select-components/selectProfiles';
-import SelectTweetTypes from '../../select-components/selectTweetTypes';
-import SelectFromDate from '../../select-components/selectFromDate';
-import SelectToDate from '../../select-components/selectToDate';
+import SelectProfiles from '../../select-components/SelectProfiles';
+import SelectTweetTypes from '../../select-components/SelectTweetTypes';
+import SelectFromDate from '../../select-components/SelectFromDate';
+import SelectToDate from '../../select-components/SelectToDate';
 import { fetchWordCloud } from '../../../api/apiRequests';
 import { IWordCloud } from '../../../types/api';
 import WordCloudChart from './WordCloudChart';
@@ -32,7 +32,7 @@ export default function WordCloudIndex() {
 				<Typography sx={{ fontWeight: 'bold', textAlign: 'center' }} variant='h5'>
 					Word Cloud
 				</Typography>
-				<TooltipHelp title='Word cloud shows words usage abundance in tweets text. You can limit tweets by profiles, types, date and text searches' />
+				<TooltipHelp title='Word cloud shows words occurrences in tweets text. You can limit tweets by profiles, types, date and text searches' />
 			</FlexCenter>
 			<SelectProfiles multiple selectedUsers={users} setSelectedUsers={setUsers} />
 			<SelectTweetTypes

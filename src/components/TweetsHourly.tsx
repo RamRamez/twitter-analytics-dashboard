@@ -54,9 +54,9 @@ function TweetsHourly(props: ITimeAndUserProps) {
 					sx={{ fontWeight: 'bold', textAlign: 'center', my: 5 }}
 					variant='h5'
 				>
-					Tweets Abundance Hourly
+					Tweets Created Hourly
 				</Typography>
-				<TooltipHelp title='Tweets are saved in GMT time-zone' />
+				<TooltipHelp title='Shows tweets created time (hourly). Tweets are saved in GMT time-zone' />
 			</FlexCenter>
 			<HighchartsReact highcharts={Highcharts} options={options} />
 		</Wrapper>
