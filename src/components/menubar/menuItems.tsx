@@ -1,4 +1,5 @@
 import {
+	Add,
 	Business,
 	Cloud,
 	Equalizer,
@@ -45,11 +46,11 @@ const menuItems = [
 		icon: <Business />,
 		link: routes.profilesInfluence,
 	},
-	// {
-	// 	label: 'Add Entity',
-	// 	icon: <Add />,
-	// 	link: routes.add,
-	// },
+	{
+		label: 'Add Profiles',
+		icon: <Add />,
+		link: routes.addProfiles,
+	},
 	// {
 	// 	label: 'Update Entity',
 	// 	icon: <SystemUpdateAlt />,

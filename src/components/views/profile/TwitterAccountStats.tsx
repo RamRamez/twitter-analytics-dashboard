@@ -54,7 +54,10 @@ export default function TwitterAccountStats({ user }: IUserProps) {
 						{`@${userData?.username}`}
 					</Typography>
 				</a>
-				<Typography sx={{ marginTop: '20px' }} variant='body1'>
+				<Typography
+					sx={{ whiteSpace: 'pre-line', marginTop: '20px' }}
+					variant='body1'
+				>
 					{userData?.description}
 				</Typography>
 				<JoinedDate variant='subtitle2' color='textSecondary'>

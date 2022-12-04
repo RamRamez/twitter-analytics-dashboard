@@ -101,3 +101,7 @@ export interface IProfilesInfluence {
 		date: string;
 	}[];
 }
+
+export interface IUpdateProfiles {
+	message: string;
+}

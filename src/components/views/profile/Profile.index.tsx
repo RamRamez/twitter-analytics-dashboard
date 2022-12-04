@@ -14,6 +14,7 @@ import TweetsHourly from '../../TweetsHourly';
 import ProfileGeneralStats from './ProfileGeneralStats';
 import ProfileSearch from './ProfileSearch';
 import SelectProfiles from '../../select-components/SelectProfiles';
+import ProfileUpdate from './ProfileUpdate';
 
 export default function ProfileIndex() {
 	const [timeRange, setTimeRange] = useState(ETimeRange.all);
@@ -25,6 +26,7 @@ export default function ProfileIndex() {
 			{user && (
 				<>
 					<TimeRangeMenu timeRange={timeRange} setTimeRange={setTimeRange} />
+					<ProfileUpdate user={user} />
 					<TwitterAccountStats user={user} />
 					<Divider />
 					<ProfileGeneralStats user={user} timeRange={timeRange} />

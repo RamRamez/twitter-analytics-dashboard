@@ -7,7 +7,7 @@ export interface ITimeRangeQuery {
 	timeRange?: ETimeRange;
 }
 
-interface IUsersQuery {
+export interface IUsersQuery {
 	users?: string[];
 }
 

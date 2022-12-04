@@ -2,6 +2,7 @@ import { apiDashboardRoutes, apiRoutes, userRoutes } from './apiRoutes';
 import { getRequest, postRequest } from '../lib/requests';
 import { IUserList } from '../types/api';
 import {
+	TAddProfiles,
 	TFetchGeneralStats,
 	TFetchHashtagsAbundance,
 	TFetchInfluentialTweets,
@@ -18,6 +19,7 @@ import {
 	TFetchWordCloud,
 	TFetchWordsInfluence,
 	TFetchWordsWar,
+	TUpdateProfiles,
 } from '../types/requests';
 
 interface IApiSignIn {
@@ -106,4 +108,12 @@ export const fetchWordsInfluence: TFetchWordsInfluence = query => {
 
 export const fetchProfilesInfluence: TFetchProfilesInfluence = query => {
 	return getRequest(apiDashboardRoutes.profilesInfluence, query);
+};
+
+export const updateProfiles: TUpdateProfiles = query => {
+	return getRequest(apiDashboardRoutes.updateUsers, query);
+};
+
+export const addProfiles: TAddProfiles = query => {
+	return getRequest(apiDashboardRoutes.addUsers, query);
 };

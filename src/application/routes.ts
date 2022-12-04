@@ -6,7 +6,7 @@ const routes = {
 	wordCloud: '/wordCloud',
 	wordsInfluence: '/wordsInfluence',
 	profilesInfluence: '/profilesInfluence',
-	add: '/add',
+	addProfiles: '/addProfiles',
 	update: '/update',
 	search: '/search',
 	operations: '/operations',

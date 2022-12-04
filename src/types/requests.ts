@@ -4,6 +4,7 @@ import {
 	ISocialNetworkQuery,
 	ITimeAndUserQuery,
 	ITimeRangeQuery,
+	IUsersQuery,
 } from './query';
 import {
 	IFetchUser,
@@ -18,6 +19,7 @@ import {
 	ITweetsMonthly,
 	ITweetsSource,
 	ITweetsType,
+	IUpdateProfiles,
 	IUserGeneralStats,
 	IWordCloud,
 	IWordsInfluence,
@@ -68,3 +70,7 @@ export type TFetchWordsInfluence = (query: ISearchQuery) => Promise<IWordsInflue
 export type TFetchProfilesInfluence = (
 	query: ISearchQuery,
 ) => Promise<IProfilesInfluence[]>;
+
+export type TUpdateProfiles = (query: IUsersQuery) => Promise<IUpdateProfiles>;
+
+export type TAddProfiles = (query: IUsersQuery) => Promise<IUpdateProfiles>;

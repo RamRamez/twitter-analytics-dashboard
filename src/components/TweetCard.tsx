@@ -66,7 +66,9 @@ export default function TweetCard(props: IProps) {
 				)}
 			</Header>
 			<a target='_blank' rel='noopener noreferrer' href={formatTweetLink(tweet.id)}>
-				<Typography variant='body1'>{tweet.text}</Typography>
+				<Typography sx={{ whiteSpace: 'pre-line' }} variant='body1'>
+					{tweet.text}
+				</Typography>
 			</a>
 			<Typography sx={{ mt: 2 }} variant='subtitle2' color='textSecondary'>
 				{formatDate(tweet.created_at)} - {tweet.source}

@@ -40,6 +40,7 @@ export interface IUser {
 	entities?: IUserEntities;
 	location?: string;
 	pinned_tweet_id?: string;
+	last_tweet_id?: string;
 	profile_image_url?: string;
 	protected?: boolean;
 	public_metrics: IUserPublicMetrics;
