@@ -32,7 +32,7 @@ function App() {
 				setIsSignedIn(false);
 				setLoading(false);
 			});
-	}, []);
+	}, [isSignedIn]);
 
 	if (loading) return null;
 	if (!isSignedIn) return <SignIn setIsSignedIn={setIsSignedIn} />;
