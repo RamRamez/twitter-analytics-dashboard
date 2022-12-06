@@ -9,7 +9,7 @@ const routes = {
 	addProfiles: '/addProfiles',
 	update: '/update',
 	search: '/search',
-	operations: '/operations',
+	logs: '/logs',
 	admin: '/admin',
 };
 

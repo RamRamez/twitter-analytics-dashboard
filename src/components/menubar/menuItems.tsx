@@ -5,6 +5,7 @@ import {
 	Equalizer,
 	FilterAlt,
 	Person,
+	RemoveRedEye,
 	Spellcheck,
 	Topic,
 } from '@mui/icons-material';
@@ -61,11 +62,11 @@ const menuItems = [
 	// 	icon: <Search />,
 	// 	link: routes.search,
 	// },
-	// {
-	// 	label: 'View Operations',
-	// 	icon: <RemoveRedEye />,
-	// 	link: routes.operations,
-	// },
+	{
+		label: 'View Logs',
+		icon: <RemoveRedEye />,
+		link: routes.logs,
+	},
 ];
 
 export default menuItems;

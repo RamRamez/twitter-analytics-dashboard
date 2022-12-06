@@ -21,6 +21,7 @@ import {
 	TFetchWordCloud,
 	TFetchWordsInfluence,
 	TFetchWordsWar,
+	TLogs,
 	TUpdateProfiles,
 } from '../types/requests';
 
@@ -118,6 +119,10 @@ export const updateProfiles: TUpdateProfiles = query => {
 
 export const addProfiles: TAddProfiles = query => {
 	return getRequest(apiDashboardRoutes.addUsers, query);
+};
+
+export const fetchLogs: TLogs = () => {
+	return getRequest(apiDashboardRoutes.logs);
 };
 
 export const addToken: TAddToken = token => {

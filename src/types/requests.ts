@@ -24,6 +24,7 @@ import {
 	IWordCloud,
 	IWordsInfluence,
 	IWordsWar,
+	ILogs,
 } from './api';
 import { IToken } from './token';
 
@@ -79,3 +80,5 @@ export type TAddProfiles = (query: IUsersQuery) => Promise<IGeneralResponse>;
 export type TAddToken = (token: IToken) => Promise<IGeneralResponse>;
 
 export type TFetchToken = () => Promise<IToken>;
+
+export type TLogs = () => Promise<ILogs>;

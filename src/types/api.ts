@@ -105,3 +105,7 @@ export interface IProfilesInfluence {
 export interface IGeneralResponse {
 	message: string;
 }
+
+export interface ILogs {
+	logs: string;
+}
