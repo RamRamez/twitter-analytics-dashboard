@@ -1,14 +1,16 @@
-import { apiDashboardRoutes, apiRoutes, userRoutes } from './apiRoutes';
+import { apiAdminRoutes, apiDashboardRoutes, apiRoutes, userRoutes } from './apiRoutes';
 import { getRequest, postRequest } from '../lib/requests';
 import { IUserList } from '../types/api';
 import {
 	TAddProfiles,
+	TAddToken,
 	TFetchGeneralStats,
 	TFetchHashtagsAbundance,
 	TFetchInfluentialTweets,
 	TFetchProfilesInfluence,
 	TFetchSearchTweets,
 	TFetchSocialNetwork,
+	TFetchToken,
 	TFetchTweetsHourly,
 	TFetchTweetsLanguages,
 	TFetchTweetsMonthly,
@@ -116,4 +118,12 @@ export const updateProfiles: TUpdateProfiles = query => {
 
 export const addProfiles: TAddProfiles = query => {
 	return getRequest(apiDashboardRoutes.addUsers, query);
+};
+
+export const addToken: TAddToken = token => {
+	return postRequest(apiAdminRoutes.token, token);
+};
+
+export const fetchToken: TFetchToken = () => {
+	return getRequest(apiAdminRoutes.token);
 };

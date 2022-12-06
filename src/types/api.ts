@@ -102,6 +102,6 @@ export interface IProfilesInfluence {
 	}[];
 }
 
-export interface IUpdateProfiles {
+export interface IGeneralResponse {
 	message: string;
 }

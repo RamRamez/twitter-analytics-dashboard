@@ -19,12 +19,13 @@ import {
 	ITweetsMonthly,
 	ITweetsSource,
 	ITweetsType,
-	IUpdateProfiles,
+	IGeneralResponse,
 	IUserGeneralStats,
 	IWordCloud,
 	IWordsInfluence,
 	IWordsWar,
 } from './api';
+import { IToken } from './token';
 
 export type TFetchGeneralStats = (query: ITimeRangeQuery) => Promise<IGeneralStats>;
 
@@ -71,6 +72,10 @@ export type TFetchProfilesInfluence = (
 	query: ISearchQuery,
 ) => Promise<IProfilesInfluence[]>;
 
-export type TUpdateProfiles = (query: IUsersQuery) => Promise<IUpdateProfiles>;
+export type TUpdateProfiles = (query: IUsersQuery) => Promise<IGeneralResponse>;
 
-export type TAddProfiles = (query: IUsersQuery) => Promise<IUpdateProfiles>;
+export type TAddProfiles = (query: IUsersQuery) => Promise<IGeneralResponse>;
+
+export type TAddToken = (token: IToken) => Promise<IGeneralResponse>;
+
+export type TFetchToken = () => Promise<IToken>;

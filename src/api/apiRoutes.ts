@@ -11,6 +11,7 @@ export const apiRoutes = {
 
 export const apiAdminRoutes = {
 	addUser: `${apiRoutes.admin}/addUser`,
+	token: `${apiRoutes.admin}/token`,
 };
 
 export const apiDashboardRoutes = {
